@@ -17,6 +17,7 @@
 		F57870651B283BB900FC66D6 /* Figure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57870641B283BB900FC66D6 /* Figure.swift */; };
 		F57870671B2945EC00FC66D6 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */; };
 		F57870691B295CD000FC66D6 /* FigureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57870681B295CD000FC66D6 /* FigureView.swift */; };
+		F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578706A1B2AC37700FC66D6 /* MyScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		F57870641B283BB900FC66D6 /* Figure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Figure.swift; sourceTree = "<group>"; };
 		F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		F57870681B295CD000FC66D6 /* FigureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FigureView.swift; sourceTree = "<group>"; };
+		F578706A1B2AC37700FC66D6 /* MyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +89,10 @@
 			children = (
 				F578703E1B282CEF00FC66D6 /* AppDelegate.swift */,
 				F57870431B282CEF00FC66D6 /* ViewController.swift */,
-				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
+				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
 				F57870681B295CD000FC66D6 /* FigureView.swift */,
 				F57870641B283BB900FC66D6 /* Figure.swift */,
+				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
 				F57870451B282CEF00FC66D6 /* Main.storyboard */,
 				F57870481B282CEF00FC66D6 /* Images.xcassets */,
 				F578704A1B282CEF00FC66D6 /* LaunchScreen.xib */,
@@ -230,6 +233,7 @@
 				F57870421B282CEF00FC66D6 /* positionmaker2.xcdatamodeld in Sources */,
 				F578703F1B282CEF00FC66D6 /* AppDelegate.swift in Sources */,
 				F57870651B283BB900FC66D6 /* Figure.swift in Sources */,
+				F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

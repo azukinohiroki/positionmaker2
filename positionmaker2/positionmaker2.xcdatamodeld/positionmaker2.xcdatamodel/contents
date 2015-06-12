@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Figure" syncable="YES">
+    <entity name="Figure" representedClassName="positionmaker2.Figure" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="direction" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
