@@ -9,9 +9,16 @@
 import Foundation
 import UIKit
 
+protocol FigureViewDelegate {
+  func startTouch(touch: UITouch) -> UIView
+}
+
 class FigureView: UIView {
   
   private var _figure: Figure?
+  private var _parent: UIView? = nil
+  
+  var delegate: FigureViewDelegate? = nil
   
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -41,5 +48,46 @@ class FigureView: UIView {
     var green = CGFloat((color >>  8) & 0xFF)
     var blue  = CGFloat( color        & 0xFF)
     self.backgroundColor = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
+  }
+  
+  private var _lastTouched: CGPoint = CGPointZero
+  
+  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesBegan(touches, withEvent: event)
+    
+    if let del = delegate {
+      var touch = touches.first as! UITouch
+      _parent = del.startTouch(touch)
+      _lastTouched = touch.locationInView(_parent)
+    }
+  }
+  
+  override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesMoved(touches, withEvent: event)
+    
+    if let parent = _parent {
+      var touch = touches.first as! UITouch
+      var point = touch.locationInView(parent)
+      var dx = _lastTouched.x - point.x
+      var dy = _lastTouched.y - point.y
+      
+      var origin = self.frame.origin
+      var size   = self.frame.size
+      self.frame = CGRectMake(origin.x - dx, origin.y - dy, size.width, size.height)
+      
+      _lastTouched = point
+    }
+  }
+  
+  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    super.touchesCancelled(touches, withEvent: event)
+    
+    _parent = nil;
+  }
+  
+  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesEnded(touches, withEvent: event)
+    
+    _parent = nil;
   }
 }

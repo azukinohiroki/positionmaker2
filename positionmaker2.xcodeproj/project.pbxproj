@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = positionmaker2.entitlements; sourceTree = "<group>"; };
 		F57870391B282CEF00FC66D6 /* positionmaker2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = positionmaker2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F578703D1B282CEF00FC66D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F578703E1B282CEF00FC66D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		F578703B1B282CEF00FC66D6 /* positionmaker2 */ = {
 			isa = PBXGroup;
 			children = (
+				F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */,
 				F578703E1B282CEF00FC66D6 /* AppDelegate.swift */,
 				F57870431B282CEF00FC66D6 /* ViewController.swift */,
 				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
@@ -176,6 +178,12 @@
 				TargetAttributes = {
 					F57870381B282CEF00FC66D6 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = RU67C28W6J;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					F57870501B282CEF00FC66D6 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -362,9 +370,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = positionmaker2/positionmaker2.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = positionmaker2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -372,9 +384,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = positionmaker2/positionmaker2.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = positionmaker2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -431,6 +447,7 @@
 				F578705D1B282CEF00FC66D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F578705E1B282CEF00FC66D6 /* Build configuration list for PBXNativeTarget "positionmaker2Tests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +456,7 @@
 				F57870601B282CEF00FC66D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

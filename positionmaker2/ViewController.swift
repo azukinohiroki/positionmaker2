@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate {
 
   @IBOutlet var baseScrollView: MyScrollView!
   @IBOutlet var baseView: UIView!
@@ -23,8 +23,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     for i in 0..<5 {
       
-      var frame = CGRectMake(CGFloat(i * 50), 0.0, 30.0, 30.0)
+      var frame = CGRectMake(CGFloat(i * 50), 100.0, 30.0, 30.0)
       var fv = FigureView(figure: figure, frame: frame)
+      fv.delegate = self
     
       self.baseView.addSubview(fv)
     }
@@ -35,9 +36,39 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     // Dispose of any resources that can be recreated.
   }
   
+  // MARK: touch events
+  /*
+  private var _lastTouched = CGPointMake(0, 0)
+  
+  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesBegan(touches, withEvent: event)
+    
+    var touch = touches.first as! UITouch
+    _lastTouched = touch.locationInView(self.baseView)
+  }
+  
+  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    super.touchesCancelled(touches, withEvent: event)
+  }
+  
+  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesEnded(touches, withEvent: event)
+  }
+  
+  override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    super.touchesMoved(touches, withEvent: event)
+  }
+  */
   // MARK: UIScrollViewDelegate
   
   func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    return self.baseView
+  }
+  
+  // MARK: FigureViewDelegate
+  
+  func startTouch(touch: UITouch) -> UIView {
+//    _lastTouched = touch.locationInView(self.baseView)
     return self.baseView
   }
 }
