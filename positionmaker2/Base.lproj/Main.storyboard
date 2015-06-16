@@ -26,20 +26,42 @@
                                     </view>
                                 </subviews>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woj-wY-bif" userLabel="debugView">
+                                <rect key="frame" x="300" y="300" width="300" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKe-r1-woX">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="DGS-OZ-8cY"/>
+                                    <constraint firstAttribute="height" secondItem="BKe-r1-woX" secondAttribute="height" id="Pho-Hk-wOW"/>
+                                    <constraint firstItem="BKe-r1-woX" firstAttribute="leading" secondItem="woj-wY-bif" secondAttribute="leading" id="fnF-Rm-Yzq"/>
+                                    <constraint firstAttribute="width" constant="300" id="jLL-Vr-Q8v"/>
+                                    <constraint firstAttribute="width" secondItem="BKe-r1-woX" secondAttribute="width" id="mBA-Rh-tIw"/>
+                                    <constraint firstItem="BKe-r1-woX" firstAttribute="top" secondItem="woj-wY-bif" secondAttribute="top" id="r9q-ci-erG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="SUk-qE-P5p" secondAttribute="trailing" constant="-16" id="3BU-eK-e6h"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BJ3-Zq-qWd"/>
-                            <constraint firstAttribute="height" secondItem="SUk-qE-P5p" secondAttribute="height" id="SWQ-LR-htk"/>
-                            <constraint firstAttribute="width" secondItem="SUk-qE-P5p" secondAttribute="width" id="ZwW-bN-ptD"/>
+                            <constraint firstItem="SUk-qE-P5p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="c8V-Q3-ut7"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gqB-Kh-enY"/>
-                            <constraint firstItem="SUk-qE-P5p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="nRz-xT-vYO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SUk-qE-P5p" secondAttribute="trailing" constant="-16" id="xPn-gG-scO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="woj-wY-bif" secondAttribute="bottom" id="lFd-hn-DjU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="woj-wY-bif" secondAttribute="trailing" constant="-16" id="mIx-gt-0Yu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="baseScrollView" destination="SUk-qE-P5p" id="pD3-xP-1An"/>
                         <outlet property="baseView" destination="hKX-H1-WB1" id="JVf-fL-3pK"/>
+                        <outlet property="debugLabel" destination="BKe-r1-woX" id="duX-a4-JcO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -11,6 +11,7 @@ import UIKit
 
 protocol FigureViewDelegate {
   func startTouch(touch: UITouch) -> UIView
+  func endTouch()
 }
 
 class FigureView: UIView {
@@ -82,12 +83,20 @@ class FigureView: UIView {
   override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
     super.touchesCancelled(touches, withEvent: event)
     
+    endTouch()
     _parent = nil;
   }
   
   override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
     super.touchesEnded(touches, withEvent: event)
     
+    endTouch()
     _parent = nil;
+  }
+  
+  func endTouch() {
+    if let del = delegate {
+      del.endTouch()
+    }
   }
 }

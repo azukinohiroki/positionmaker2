@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
 
   @IBOutlet var baseScrollView: MyScrollView!
   @IBOutlet var baseView: UIView!
+  @IBOutlet var debugLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,20 +21,27 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     self.baseScrollView.delegate = self
     
     var figure = Figure.defaultFigure()
-    
-    for i in 0..<5 {
-      
-      var frame = CGRectMake(CGFloat(i * 50), 100.0, 30.0, 30.0)
-      var fv = FigureView(figure: figure, frame: frame)
-      fv.delegate = self
-    
-      self.baseView.addSubview(fv)
+
+    for j in 0..<10 {
+      for i in 0..<15 {
+        var frame   = CGRectMake(CGFloat(i * 50), CGFloat(j*50 + 100), 30.0, 30.0)
+        var fv      = FigureView(figure: figure, frame: frame)
+        fv.delegate = self
+        
+        self.baseView.addSubview(fv)
+      }
     }
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    self.debugLabel.text = NSString(format: "w:%d h:%d", Int(self.view.frame.width), Int(self.view.frame.height)) as String
   }
   
   // MARK: touch events
@@ -69,6 +77,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   func startTouch(touch: UITouch) -> UIView {
 //    _lastTouched = touch.locationInView(self.baseView)
+    self.baseScrollView.canCancelContentTouches = false
     return self.baseView
+  }
+  
+  func endTouch() {
+    self.baseScrollView.canCancelContentTouches = true
   }
 }
