@@ -20,11 +20,18 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.01" maximumZoomScale="100" translatesAutoresizingMaskIntoConstraints="NO" id="SUk-qE-P5p" customClass="MyScrollView" customModule="positionmaker2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKX-H1-WB1">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKX-H1-WB1">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hKX-H1-WB1" secondAttribute="bottom" id="F16-sa-bZc"/>
+                                    <constraint firstItem="hKX-H1-WB1" firstAttribute="leading" secondItem="SUk-qE-P5p" secondAttribute="leading" id="KLC-aC-Zw1"/>
+                                    <constraint firstAttribute="trailing" secondItem="hKX-H1-WB1" secondAttribute="trailing" id="Mdt-Po-ML0"/>
+                                    <constraint firstItem="hKX-H1-WB1" firstAttribute="top" secondItem="SUk-qE-P5p" secondAttribute="top" id="iqu-5F-4HD"/>
+                                </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woj-wY-bif" userLabel="debugView">
                                 <rect key="frame" x="300" y="300" width="300" height="300"/>
@@ -48,14 +55,17 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.97118144129999995" green="0.95667799080000004" blue="0.33944452629999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="SUk-qE-P5p" secondAttribute="trailing" constant="-16" id="3BU-eK-e6h"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BJ3-Zq-qWd"/>
+                            <constraint firstAttribute="width" secondItem="hKX-H1-WB1" secondAttribute="width" id="MGr-fp-Vc5"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="c8V-Q3-ut7"/>
+                            <constraint firstAttribute="height" secondItem="hKX-H1-WB1" secondAttribute="height" id="gCb-AL-y4w"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gqB-Kh-enY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="woj-wY-bif" secondAttribute="bottom" id="lFd-hn-DjU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="woj-wY-bif" secondAttribute="trailing" constant="-16" id="mIx-gt-0Yu"/>
+                            <constraint firstAttribute="height" secondItem="SUk-qE-P5p" secondAttribute="height" id="xvO-x8-x5P"/>
                         </constraints>
                     </view>
                     <connections>

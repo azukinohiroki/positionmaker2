@@ -10,14 +10,15 @@ import Foundation
 import UIKit
 
 protocol FigureViewDelegate {
-  func startTouch(touch: UITouch) -> UIView
+  func startTouch(touch: UITouch) -> (vc: ViewController?, parent: UIView?)
   func endTouch()
 }
 
 class FigureView: UIView {
   
-  private var _figure: Figure?
-  private var _parent: UIView? = nil
+  private var _figure: Figure!
+  private var _parent: UIView?
+  private var _vc: ViewController?
   
   var delegate: FigureViewDelegate? = nil
   
@@ -58,7 +59,7 @@ class FigureView: UIView {
     
     if let del = delegate {
       var touch = touches.first as! UITouch
-      _parent = del.startTouch(touch)
+      (_vc, _parent) = del.startTouch(touch)
       _lastTouched = touch.locationInView(_parent)
     }
   }
@@ -94,9 +95,28 @@ class FigureView: UIView {
     _parent = nil;
   }
   
+  private var overlapFVs: [FigureView]?
+  
   func endTouch() {
-    if let del = delegate {
-      del.endTouch()
+    
+    if let vc = _vc {
+      overlapFVs = [FigureView]()
+      for fv in vc.figureViews {
+        if (self == fv) { continue; }
+        if CGRectContainsPoint(self.frame, fv.center) {
+          overlapFVs?.append(fv)
+          self.alpha = 0.5
+          fv.alpha   = 0.5
+        }
+      }
     }
+    
+    if overlapFVs?.count != 0 {
+      overlapFVs?.append(self)
+      
+    } else {
+      self.alpha = 1
+    }
+    delegate?.endTouch()
   }
 }

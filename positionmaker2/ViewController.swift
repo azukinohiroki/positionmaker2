@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   @IBOutlet var baseView: UIView!
   @IBOutlet var debugLabel: UILabel!
   
+  private (set) var figureViews = [FigureView]()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -29,6 +31,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
         fv.delegate = self
         
         self.baseView.addSubview(fv)
+        self.figureViews.append(fv)
       }
     }
   }
@@ -75,10 +78,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   // MARK: FigureViewDelegate
   
-  func startTouch(touch: UITouch) -> UIView {
+  func startTouch(touch: UITouch) -> (vc: ViewController?, parent: UIView?) {
 //    _lastTouched = touch.locationInView(self.baseView)
     self.baseScrollView.canCancelContentTouches = false
-    return self.baseView
+    return (self, self.baseView)
   }
   
   func endTouch() {
