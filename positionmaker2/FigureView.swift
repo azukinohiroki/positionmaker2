@@ -95,28 +95,60 @@ class FigureView: UIView {
     _parent = nil;
   }
   
-  private var overlapFVs: [FigureView]?
+  private var _overlapFVs: [FigureView] = []
   
   func endTouch() {
     
     if let vc = _vc {
-      overlapFVs = [FigureView]()
+      var oldOverlaps = _overlapFVs
+      for fv in oldOverlaps {
+        fv.requestDeleteFV(self)
+      }
+      
+      _overlapFVs = [FigureView]()
       for fv in vc.figureViews {
         if (self == fv) { continue; }
         if CGRectContainsPoint(self.frame, fv.center) {
-          overlapFVs?.append(fv)
+//        if CGRectIntersectsRect(self.frame, fv.frame) {
+          _overlapFVs.append(fv)
           self.alpha = 0.5
           fv.alpha   = 0.5
         }
       }
+      
     }
     
-    if overlapFVs?.count != 0 {
-      overlapFVs?.append(self)
+    if _overlapFVs.isEmpty {
+      self.alpha = 1
       
     } else {
-      self.alpha = 1
+      for fv in _overlapFVs {
+        fv.requestAddFV(self)
+      }
+      _overlapFVs.append(self)
     }
     delegate?.endTouch()
+  }
+  
+  func requestAddFV(fv: FigureView) {
+    if _overlapFVs.isEmpty {
+      _overlapFVs = [self, fv]
+      
+    } else {
+      _overlapFVs.append(fv)
+    }
+  }
+  
+  func requestDeleteFV(fv: FigureView) {
+    if _overlapFVs.isEmpty {
+      return
+      
+    } else {
+      _overlapFVs = _overlapFVs.filter() { $0 != fv }
+      if _overlapFVs.count == 1 {
+        _overlapFVs.removeAll(keepCapacity: true)
+        alpha = 1
+      }
+    }
   }
 }
