@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol FigureViewDelegate {
-  func startTouch(touch: UITouch) -> (vc: ViewController?, parent: UIView?)
+  func startTouch(touch: UITouch) -> UIView?
   func endTouch()
 }
 
@@ -18,28 +18,36 @@ class FigureView: UIView {
   
   private var _figure: Figure!
   private var _parent: UIView?
-  private var _vc: ViewController?
+  private var _vc: ViewController!
   
   var delegate: FigureViewDelegate? = nil
+  
+  
   
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
-  init(figure: Figure, frame: CGRect) {
+  init(figure: Figure, vc: ViewController, frame: CGRect) {
     
     super.init(frame: frame)
     
+    _vc = vc
     setFigure(figure)
+    _startingPoint = frame.origin
   }
   
-  init(figure :Figure) {
+  init(figure :Figure, vc: ViewController) {
     
     var frame = CGRect(origin: CGPointZero, size: CGSizeMake(30, 30))
     super.init(frame: frame)
     
+    _vc  = vc
     setFigure(figure)
+    _startingPoint = frame.origin
   }
+  
+  
   
   private func setFigure(figure: Figure) {
     
@@ -59,7 +67,7 @@ class FigureView: UIView {
     
     if let del = delegate {
       var touch = touches.first as! UITouch
-      (_vc, _parent) = del.startTouch(touch)
+      _parent = del.startTouch(touch)
       _lastTouched = touch.locationInView(_parent)
     }
   }
@@ -78,6 +86,10 @@ class FigureView: UIView {
       self.frame = CGRectMake(origin.x - dx, origin.y - dy, size.width, size.height)
       
       _lastTouched = point
+      
+      if _recording {
+        recordMotion(CGPointMake(dx, dy))
+      }
     }
   }
   
@@ -99,24 +111,25 @@ class FigureView: UIView {
   
   func endTouch() {
     
-    if let vc = _vc {
-      var oldOverlaps = _overlapFVs
-      for fv in oldOverlaps {
-        fv.requestDeleteFV(self)
-      }
-      
-      _overlapFVs = [FigureView]()
-      for fv in vc.figureViews {
-        if (self == fv) { continue; }
-        if CGRectContainsPoint(self.frame, fv.center) {
-//        if CGRectIntersectsRect(self.frame, fv.frame) {
-          _overlapFVs.append(fv)
-          self.alpha = 0.5
-          fv.alpha   = 0.5
-        }
-      }
-      
+    var oldOverlaps = _overlapFVs
+    for fv in oldOverlaps {
+      fv.requestDeleteFV(self)
     }
+    
+    _overlapFVs = [FigureView]()
+    for fv in _vc.figureViews {
+      if (self == fv) { continue; }
+      if CGRectContainsPoint(self.frame, fv.center) {
+        //        if CGRectIntersectsRect(self.frame, fv.frame) {
+        _overlapFVs.append(fv)
+        self.alpha = 0.5
+        fv.alpha   = 0.5
+      }
+    }
+    
+      if _recording {
+        saveMotion()
+      }
     
     if _overlapFVs.isEmpty {
       self.alpha = 1
@@ -149,6 +162,77 @@ class FigureView: UIView {
         _overlapFVs.removeAll(keepCapacity: true)
         alpha = 1
       }
+    }
+  }
+  
+  
+  
+  private var _recording = true
+  private var _recordedMotion: [[CGPoint]] = []
+  private var _tmpRecordArray: [CGPoint] = []
+  private var _startingPoint: CGPoint = CGPointZero
+  
+  private func recordMotion(p: CGPoint) {
+    _tmpRecordArray.append(p)
+  }
+  
+  private func saveMotion() {
+    _recordedMotion.append(_tmpRecordArray)
+    _tmpRecordArray = []
+  }
+  
+  private var _playing = false
+  
+  func startPlaying() {
+    
+    _playing = true
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+      
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        var p = self._startingPoint
+        var s = self.frame.size
+        UIView.animateWithDuration(1, animations: { () -> Void in
+          self.frame = CGRectMake(p.x, p.y, s.width, s.height)
+          return
+        })
+      })
+      sleep(1)
+      
+      var index = 0
+      while self._playing {
+        if self._recordedMotion.count <= index {
+          self._playing = false
+          return
+        }
+        
+        var array = self._recordedMotion[index]
+        if array.count == 0 {
+          continue
+        }
+        
+        self.playASequence(array)
+        ++index
+      }
+    })
+  }
+  
+  private func playASequence(array: [CGPoint]) {
+//    _recording = false
+    var interval = 1//_vc.playInterval
+    var count = array.count
+    
+    if count == 0 { return }
+    
+    var wait = (interval * 50000) / count
+    
+    for p in array {
+      
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.center = CGPointMake(self.center.x - p.x, self.center.y - p.y)
+        return
+      })
+      
+      usleep(UInt32(wait))
     }
   }
 }

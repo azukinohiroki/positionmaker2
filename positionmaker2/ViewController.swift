@@ -16,6 +16,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   @IBOutlet var debugLabel: UILabel!
   
   private (set) var figureViews = [FigureView]()
+  private (set) var playInterval = 3
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,7 +28,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     for j in 0..<10 {
       for i in 0..<15 {
         var frame   = CGRectMake(CGFloat(i * 50), CGFloat(j*50 + 100), 30.0, 30.0)
-        var fv      = FigureView(figure: figure, frame: frame)
+        var fv      = FigureView(figure: figure, vc:self, frame: frame)
         fv.delegate = self
         
         self.baseView.addSubview(fv)
@@ -45,6 +46,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     super.viewDidAppear(animated)
     
     self.debugLabel.text = NSString(format: "w:%d h:%d", Int(self.view.frame.width), Int(self.view.frame.height)) as String
+  }
+  
+  @IBAction func btnTapped(sender: UIButton) {
+    for fv in figureViews {
+      fv.startPlaying()
+    }
   }
   
   // MARK: touch events
@@ -78,10 +85,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   // MARK: FigureViewDelegate
   
-  func startTouch(touch: UITouch) -> (vc: ViewController?, parent: UIView?) {
+  func startTouch(touch: UITouch) -> UIView? {
 //    _lastTouched = touch.locationInView(self.baseView)
     self.baseScrollView.canCancelContentTouches = false
-    return (self, self.baseView)
+    return self.baseView
   }
   
   func endTouch() {
