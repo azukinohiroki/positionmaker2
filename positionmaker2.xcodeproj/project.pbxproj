@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5272A841B33FE660021B01B /* ActionLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5272A831B33FE660021B01B /* ActionLogController.swift */; };
 		F578703F1B282CEF00FC66D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578703E1B282CEF00FC66D6 /* AppDelegate.swift */; };
 		F57870421B282CEF00FC66D6 /* positionmaker2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F57870401B282CEF00FC66D6 /* positionmaker2.xcdatamodeld */; };
 		F57870441B282CEF00FC66D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57870431B282CEF00FC66D6 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5272A831B33FE660021B01B /* ActionLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionLogController.swift; sourceTree = "<group>"; };
 		F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = positionmaker2.entitlements; sourceTree = "<group>"; };
 		F57870391B282CEF00FC66D6 /* positionmaker2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = positionmaker2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F578703D1B282CEF00FC66D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */,
 				F578703E1B282CEF00FC66D6 /* AppDelegate.swift */,
 				F57870431B282CEF00FC66D6 /* ViewController.swift */,
+				F5272A831B33FE660021B01B /* ActionLogController.swift */,
 				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
 				F57870681B295CD000FC66D6 /* FigureView.swift */,
 				F57870641B283BB900FC66D6 /* Figure.swift */,
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5272A841B33FE660021B01B /* ActionLogController.swift in Sources */,
 				F57870671B2945EC00FC66D6 /* CoreDataHelper.swift in Sources */,
 				F57870441B282CEF00FC66D6 /* ViewController.swift in Sources */,
 				F57870691B295CD000FC66D6 /* FigureView.swift in Sources */,

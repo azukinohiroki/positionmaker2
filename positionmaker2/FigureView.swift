@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
+
+
 protocol FigureViewDelegate {
-  func startTouch(touch: UITouch) -> UIView?
-  func endTouch()
+  func startTouch(view: FigureView, touch: UITouch) -> UIView?
+  func endTouch(view: FigureView, beganPoint: CGPoint)
 }
+
+
 
 class FigureView: UIView {
   
@@ -60,6 +64,7 @@ class FigureView: UIView {
     self.backgroundColor = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
   }
   
+  private var _beganPoint: CGPoint = CGPointZero
   private var _lastTouched: CGPoint = CGPointZero
   
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -67,8 +72,9 @@ class FigureView: UIView {
     
     if let del = delegate {
       var touch = touches.first as! UITouch
-      _parent = del.startTouch(touch)
+      _parent = del.startTouch(self, touch: touch)
       _lastTouched = touch.locationInView(_parent)
+      _beganPoint  = frame.origin
     }
   }
   
@@ -140,7 +146,7 @@ class FigureView: UIView {
       }
       _overlapFVs.append(self)
     }
-    delegate?.endTouch()
+    delegate?.endTouch(self, beganPoint: _beganPoint)
   }
   
   func requestAddFV(fv: FigureView) {
