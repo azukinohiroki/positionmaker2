@@ -11,7 +11,7 @@ import UIKit
 
 
 
-protocol FigureViewDelegate {
+protocol FigureViewDelegate : class {
   func startTouch(view: FigureView, touch: UITouch) -> UIView?
   func endTouch(view: FigureView, beganPoint: CGPoint)
 }
@@ -24,7 +24,7 @@ class FigureView: UIView {
   private var _parent: UIView?
   private var _vc: ViewController!
   
-  var delegate: FigureViewDelegate? = nil
+  weak var delegate: FigureViewDelegate? = nil
   var selected: Bool = false {
     didSet {
       self.selected ? self.backgroundColor = UIColor.lightGrayColor() : setColor(_figure)
@@ -58,7 +58,7 @@ class FigureView: UIView {
     _startingPoint = frame.origin
     
     var gr = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleTap:"))
-    gr.numberOfTapsRequired = 1
+    gr.numberOfTapsRequired    = 1
     gr.numberOfTouchesRequired = 1
     addGestureRecognizer(gr)
   }
@@ -91,7 +91,7 @@ class FigureView: UIView {
   private var _moved: Bool = false
   
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-    super.touchesBegan(touches, withEvent: event)
+    //    super.touchesBegan(touches, withEvent: event)
     
     _moved = false
     
@@ -104,7 +104,7 @@ class FigureView: UIView {
   }
   
   override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-    super.touchesMoved(touches, withEvent: event)
+    //    super.touchesMoved(touches, withEvent: event)
     
     _moved = true
     
@@ -114,9 +114,9 @@ class FigureView: UIView {
       var dx = _lastTouched.x - point.x
       var dy = _lastTouched.y - point.y
       
-      var origin = self.frame.origin
-      var size   = self.frame.size
-      self.frame = CGRectMake(origin.x - dx, origin.y - dy, size.width, size.height)
+      var center  = self.center
+      self.center = CGPointMake(center.x - dx, center.y - dy)
+      moveOthers(dx, dy)
       
       _lastTouched = point
       
@@ -126,15 +126,23 @@ class FigureView: UIView {
     }
   }
   
+  func moveOthers(dx: CGFloat, _ dy: CGFloat) {
+    for fv in _vc.figureViews {
+      if !fv.selected || fv == self { continue }
+      var center = fv.center
+      fv.center  = CGPointMake(center.x - dx, center.y - dy)
+    }
+  }
+  
   override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-    super.touchesCancelled(touches, withEvent: event)
+    //    super.touchesCancelled(touches, withEvent: event)
     
     endTouch()
     _parent = nil;
   }
   
   override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-    super.touchesEnded(touches, withEvent: event)
+    //    super.touchesEnded(touches, withEvent: event)
     
     endTouch()
     _parent = nil;
@@ -155,16 +163,16 @@ class FigureView: UIView {
     for fv in _vc.figureViews {
       if (self == fv) { continue; }
       if CGRectContainsPoint(self.frame, fv.center) {
-//    if CGRectIntersectsRect(self.frame, fv.frame) {
+//      if CGRectIntersectsRect(self.frame, fv.frame) {
         _overlapFVs.append(fv)
         self.alpha = 0.5
         fv.alpha   = 0.5
       }
     }
     
-      if _recording {
-        saveMotion()
-      }
+    if _recording {
+      saveMotion()
+    }
     
     if _overlapFVs.isEmpty {
       self.alpha = 1
@@ -204,8 +212,8 @@ class FigureView: UIView {
   
   private var _recording = true
   private var _recordedMotion: [[CGPoint]] = []
-  private var _tmpRecordArray: [CGPoint] = []
-  private var _startingPoint: CGPoint = CGPointZero
+  private var _tmpRecordArray: [CGPoint]   = []
+  private var _startingPoint: CGPoint      = CGPointZero
   
   private func recordMotion(p: CGPoint) {
     _tmpRecordArray.append(p)
@@ -252,7 +260,7 @@ class FigureView: UIView {
   }
   
   private func playASequence(array: [CGPoint]) {
-//    _recording = false
+    //    _recording = false
     var interval = 1//_vc.playInterval
     var count = array.count
     

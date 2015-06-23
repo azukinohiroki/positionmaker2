@@ -20,7 +20,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.01" maximumZoomScale="100" translatesAutoresizingMaskIntoConstraints="NO" id="SUk-qE-P5p" customClass="MyScrollView" customModule="positionmaker2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKX-H1-WB1">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKX-H1-WB1" customClass="ParentView" customModule="positionmaker2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -93,10 +93,30 @@
                                     <action selector="redoTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kvg-T8-Eun"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B93-a2-YAK" customClass="DashDrawingView" customModule="positionmaker2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="9bX-uS-1Xb"/>
+                                    <constraint firstAttribute="width" constant="600" id="uoH-mV-KBW"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9bX-uS-1Xb"/>
+                                        <exclude reference="uoH-mV-KBW"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97118144129999995" green="0.95667799080000004" blue="0.33944452629999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="2Le-iI-xKN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SUk-qE-P5p" secondAttribute="trailing" constant="-16" id="3BU-eK-e6h"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="A9e-Vv-eb0"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BJ3-Zq-qWd"/>
                             <constraint firstAttribute="bottomMargin" secondItem="iEx-7c-5L4" secondAttribute="bottom" id="EhQ-LW-uHo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FyY-PM-If1" secondAttribute="trailing" constant="522" id="F7R-Ng-hKj"/>
@@ -118,14 +138,19 @@
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gqB-Kh-enY"/>
                             <constraint firstItem="FyY-PM-If1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hV1-g8-gKV"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="woj-wY-bif" secondAttribute="bottom" id="lFd-hn-DjU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="B93-a2-YAK" secondAttribute="bottom" id="ldb-HV-JeL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="woj-wY-bif" secondAttribute="trailing" constant="-16" id="mIx-gt-0Yu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FyY-PM-If1" secondAttribute="bottom" constant="270" id="nWU-IC-SKZ"/>
                             <constraint firstItem="FyY-PM-If1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="520" id="oK8-8O-B0N"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="pYF-Ph-ekV"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="qS3-Me-Qgl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B93-a2-YAK" secondAttribute="trailing" constant="-16" id="ttE-f4-q8B"/>
                             <constraint firstAttribute="height" secondItem="SUk-qE-P5p" secondAttribute="height" id="xvO-x8-x5P"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FyY-PM-If1" secondAttribute="bottom" constant="30" id="yzq-VQ-UB3"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="ttE-f4-q8B"/>
                                 <exclude reference="EhQ-LW-uHo"/>
                                 <exclude reference="HeF-MI-bbe"/>
                                 <exclude reference="OLB-Sl-zCf"/>
@@ -137,6 +162,7 @@
                                 <exclude reference="YBc-Tm-ztf"/>
                                 <exclude reference="oK8-8O-B0N"/>
                                 <exclude reference="S4t-Tf-VrB"/>
+                                <exclude reference="ldb-HV-JeL"/>
                                 <exclude reference="yzq-VQ-UB3"/>
                             </mask>
                         </variation>
@@ -144,6 +170,7 @@
                     <connections>
                         <outlet property="baseScrollView" destination="SUk-qE-P5p" id="pD3-xP-1An"/>
                         <outlet property="baseView" destination="hKX-H1-WB1" id="JVf-fL-3pK"/>
+                        <outlet property="dashDrawingView" destination="B93-a2-YAK" id="30G-Gm-xeG"/>
                         <outlet property="debugLabel" destination="BKe-r1-woX" id="duX-a4-JcO"/>
                     </connections>
                 </viewController>

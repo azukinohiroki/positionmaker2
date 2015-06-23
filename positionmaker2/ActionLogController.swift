@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 enum ActionLogType: Int {
-  case MOVE = 0
+  case MOVE
+  case MULTI_MOVE
 }
 
 class ActionLogObject {
@@ -20,15 +21,24 @@ class ActionLogObject {
   }
 }
 
-class MoveObject: ActionLogObject {
+class MoveObject : ActionLogObject {
   var from: CGPoint
   var to:   CGPoint
   var fv:   FigureView
-  init(type: ActionLogType, from: CGPoint, to: CGPoint, fv: FigureView) {
+  init(from: CGPoint, to: CGPoint, fv: FigureView) {
     self.from = from
     self.to   = to
     self.fv   = fv
-    super.init(type: type)
+    super.init(type: .MOVE)
+  }
+}
+
+class MultiMoveObject : MoveObject {
+  var fvs:  [FigureView]
+  init(from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
+    self.fvs  = fvs
+    super.init(from: from, to: to, fv: fv)
+    self.type = .MULTI_MOVE
   }
 }
 
@@ -38,7 +48,13 @@ class ActionLogController {
   private let _redoLog: NSMutableArray = NSMutableArray()
   
   func addMove(#from: CGPoint, to: CGPoint, fv:FigureView) {
-    var dat = MoveObject(type: .MOVE, from: from, to: to, fv: fv)
+    var dat = MoveObject(from: from, to: to, fv: fv)
+    _undoLog.addObject(dat)
+    _redoLog.removeAllObjects()
+  }
+  
+  func addMultiMove(#from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
+    var dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
     _undoLog.addObject(dat)
     _redoLog.removeAllObjects()
   }
