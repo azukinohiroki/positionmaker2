@@ -62,47 +62,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   }
   
   @IBAction func undoTapped(sender: UIButton) {
-    var log_ = _actionLogController.undo()
-    if let log = log_ {
-      switch log.type {
-      case .MOVE:
-        var move = log as! MoveObject
-        var size = move.fv.frame.size
-        move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
-        
-      case .MULTI_MOVE:
-        var move = log as! MultiMoveObject
-        var size = move.fv.frame.size
-        move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
-        var dx = move.to.x - move.from.x
-        var dy = move.to.y - move.from.y
-        for fv in move.fvs {
-          fv.center = CGPointMake(fv.center.x - dx, fv.center.y - dy)
-        }
-      }
-    }
+    _actionLogController.undo()
   }
   
   @IBAction func redoTapped(sender: UIButton) {
-    var log_ = _actionLogController.redo()
-    if let log = log_ {
-      switch log.type {
-      case .MOVE:
-        var move = log as! MoveObject
-        var size = move.fv.frame.size
-        move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
-        
-      case .MULTI_MOVE:
-        var move = log as! MultiMoveObject
-        var size = move.fv.frame.size
-        move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
-        var dx = move.to.x - move.from.x
-        var dy = move.to.y - move.from.y
-        for fv in move.fvs {
-          fv.center = CGPointMake(fv.center.x + dx, fv.center.y + dy)
-        }
-      }
-    }
+    _actionLogController.redo()
   }
   
   
@@ -152,10 +116,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
       }
     }
     
+    var o = view.frame.origin
+    
     if fvs.isEmpty {
-      _actionLogController.addMove(from: beganPoint, to: view.frame.origin, fv: view)
+      _actionLogController.addMove(from: beganPoint, to: o, fv: view)
     } else {
-      _actionLogController.addMultiMove(from: beganPoint, to: view.frame.origin, fv: view, fvs: fvs)
+      _actionLogController.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
     }
   }
   

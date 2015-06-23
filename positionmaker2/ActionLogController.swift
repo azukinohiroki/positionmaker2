@@ -64,6 +64,24 @@ class ActionLogController {
     var log = _undoLog.lastObject as! ActionLogObject
     _undoLog.removeObject(log)
     _redoLog.addObject(log)
+    
+    switch log.type {
+    case .MOVE:
+      var move = log as! MoveObject
+      var size = move.fv.frame.size
+      move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
+      
+    case .MULTI_MOVE:
+      var move = log as! MultiMoveObject
+      var size = move.fv.frame.size
+      move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
+      var dx = move.to.x - move.from.x
+      var dy = move.to.y - move.from.y
+      for fv in move.fvs {
+        fv.center = CGPointMake(fv.center.x - dx, fv.center.y - dy)
+      }
+    }
+
     return log
   }
   
@@ -72,6 +90,24 @@ class ActionLogController {
     var log = _redoLog.lastObject as! ActionLogObject
     _redoLog.removeObject(log)
     _undoLog.addObject(log)
+    
+    switch log.type {
+    case .MOVE:
+      var move = log as! MoveObject
+      var size = move.fv.frame.size
+      move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
+      
+    case .MULTI_MOVE:
+      var move = log as! MultiMoveObject
+      var size = move.fv.frame.size
+      move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
+      var dx = move.to.x - move.from.x
+      var dy = move.to.y - move.from.y
+      for fv in move.fvs {
+        fv.center = CGPointMake(fv.center.x + dx, fv.center.y + dy)
+      }
+    }
+    
     return log
   }
 }
