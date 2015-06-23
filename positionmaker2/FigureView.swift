@@ -25,7 +25,11 @@ class FigureView: UIView {
   private var _vc: ViewController!
   
   var delegate: FigureViewDelegate? = nil
-  
+  var selected: Bool = false {
+    didSet {
+      self.selected ? self.backgroundColor = UIColor.lightGrayColor() : setColor(_figure)
+    }
+  }
   
   
   required init(coder aDecoder: NSCoder) {
@@ -36,27 +40,36 @@ class FigureView: UIView {
     
     super.init(frame: frame)
     
-    _vc = vc
-    setFigure(figure)
-    _startingPoint = frame.origin
+    initFigureView(figure, vc: vc, frame: frame)
   }
   
-  init(figure :Figure, vc: ViewController) {
+  init(figure: Figure, vc: ViewController) {
     
     var frame = CGRect(origin: CGPointZero, size: CGSizeMake(30, 30))
     super.init(frame: frame)
     
-    _vc  = vc
-    setFigure(figure)
-    _startingPoint = frame.origin
+    initFigureView(figure, vc: vc, frame: frame)
   }
   
   
+  private func initFigureView(figure: Figure, vc: ViewController, frame: CGRect) {
+    _vc  = vc
+    setFigure(figure)
+    _startingPoint = frame.origin
+    
+    var gr = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleTap:"))
+    gr.numberOfTapsRequired = 1
+    gr.numberOfTouchesRequired = 1
+    addGestureRecognizer(gr)
+  }
   
   private func setFigure(figure: Figure) {
     
     _figure = figure
-    
+    setColor(figure)
+  }
+  
+  private func setColor(figure: Figure) {
     var color = figure.color.intValue
     var red   = CGFloat((color >> 16) & 0xFF)
     var green = CGFloat((color >>  8) & 0xFF)
@@ -64,11 +77,23 @@ class FigureView: UIView {
     self.backgroundColor = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
   }
   
+  func handleTap(sender: UITapGestureRecognizer) {
+    if sender.state == .Ended && !_moved {
+      selected = !selected
+//      println("tapped+\(selected)")
+    }
+  }
+  
+  
+  
   private var _beganPoint: CGPoint = CGPointZero
   private var _lastTouched: CGPoint = CGPointZero
+  private var _moved: Bool = false
   
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
     super.touchesBegan(touches, withEvent: event)
+    
+    _moved = false
     
     if let del = delegate {
       var touch = touches.first as! UITouch
@@ -80,6 +105,8 @@ class FigureView: UIView {
   
   override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
     super.touchesMoved(touches, withEvent: event)
+    
+    _moved = true
     
     if let parent = _parent {
       var touch = touches.first as! UITouch
@@ -117,6 +144,8 @@ class FigureView: UIView {
   
   func endTouch() {
     
+    _moved = false
+    
     var oldOverlaps = _overlapFVs
     for fv in oldOverlaps {
       fv.requestDeleteFV(self)
@@ -126,7 +155,7 @@ class FigureView: UIView {
     for fv in _vc.figureViews {
       if (self == fv) { continue; }
       if CGRectContainsPoint(self.frame, fv.center) {
-        //        if CGRectIntersectsRect(self.frame, fv.frame) {
+//    if CGRectIntersectsRect(self.frame, fv.frame) {
         _overlapFVs.append(fv)
         self.alpha = 0.5
         fv.alpha   = 0.5
