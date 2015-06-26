@@ -12,6 +12,7 @@ import UIKit
 enum ActionLogType: Int {
   case MOVE
   case MULTI_MOVE
+  case DELETE
 }
 
 class ActionLogObject {
@@ -42,6 +43,16 @@ class MultiMoveObject : MoveObject {
   }
 }
 
+class DeleteObject : ActionLogObject {
+  var fv: FigureView
+  var vc: ViewController
+  init(fv: FigureView, vc: ViewController) {
+    self.fv = fv
+    self.vc = vc
+    super.init(type: .DELETE)
+  }
+}
+
 class ActionLogController {
   
   private let _undoLog: NSMutableArray = NSMutableArray()
@@ -55,6 +66,14 @@ class ActionLogController {
   
   func addMultiMove(#from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
     var dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
+    _undoLog.addObject(dat)
+    _redoLog.removeAllObjects()
+  }
+  
+  func addDelete(#fv: FigureView, origin: CGPoint, vc: ViewController) {
+    var frame = fv.frame
+    fv.frame = CGRectMake(origin.x, origin.y, CGRectGetWidth(frame), CGRectGetHeight(frame))
+    var dat = DeleteObject(fv: fv, vc: vc)
     _undoLog.addObject(dat)
     _redoLog.removeAllObjects()
   }
@@ -82,6 +101,12 @@ class ActionLogController {
         fv.center = CGPointMake(fv.center.x - dx, fv.center.y - dy)
         fv.checkOverlaps()
       }
+      
+    case .DELETE:
+      var del = log as! DeleteObject
+      del.vc.addFVToList(del.fv)
+      del.vc.baseView.addSubview(del.fv)
+      // FIXME: DB
     }
 
     return log
@@ -110,6 +135,12 @@ class ActionLogController {
         fv.center = CGPointMake(fv.center.x + dx, fv.center.y + dy)
         fv.checkOverlaps()
       }
+      
+    case .DELETE:
+      var del = log as! DeleteObject
+      del.fv.removeFromSuperview()
+      del.vc.removeFVFromList(del.fv)
+      // FIXME: DB
     }
     
     return log

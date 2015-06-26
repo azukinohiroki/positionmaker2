@@ -20,7 +20,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   private (set) var figureViews = [FigureView]()
   private (set) var playInterval = 3
   
-  private let _actionLogController = ActionLogController()
+  let actionLogController = ActionLogController()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -63,16 +63,20 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   }
   
   @IBAction func undoTapped(sender: UIButton) {
-    _actionLogController.undo()
+    actionLogController.undo()
   }
   
   @IBAction func redoTapped(sender: UIButton) {
-    _actionLogController.redo()
+    actionLogController.redo()
   }
   
   
   func removeFVFromList(fv: FigureView) {
     figureViews = figureViews.filter() { $0 != fv }
+  }
+  
+  func addFVToList(fv: FigureView) {
+    figureViews.append(fv)
   }
   
   
@@ -125,9 +129,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     var o = view.frame.origin
     
     if fvs.isEmpty {
-      _actionLogController.addMove(from: beganPoint, to: o, fv: view)
+      actionLogController.addMove(from: beganPoint, to: o, fv: view)
     } else {
-      _actionLogController.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
+      actionLogController.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
     }
   }
   

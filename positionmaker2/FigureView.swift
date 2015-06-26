@@ -89,12 +89,16 @@ class FigureView: UIView {
     }
   }
   
+  private var _longPressed = false
+  
   func handleLongPress(sender: UILongPressGestureRecognizer) {
     if sender.state == .Began {
+      _longPressed = true
       var alert = SCLAlertView()
       alert.addButton("OK", action: { () -> Void in
         self.removeFromSuperview()
         self._vc.removeFVFromList(self)
+        self._vc.actionLogController.addDelete(fv: self, origin: self._beganPoint, vc: self._vc)
         // FIXME: DBとの連携
       })
       alert.showWarning("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
@@ -179,7 +183,9 @@ class FigureView: UIView {
       saveMotion()
     }
     
-    delegate?.endTouch(self, beganPoint: _beganPoint)
+    if !_longPressed {
+      delegate?.endTouch(self, beganPoint: _beganPoint)
+    }
   }
   
   func checkOverlaps() {
