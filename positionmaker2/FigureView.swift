@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SCLAlertView
 
 
 
@@ -61,6 +62,11 @@ class FigureView: UIView {
     gr.numberOfTapsRequired    = 1
     gr.numberOfTouchesRequired = 1
     addGestureRecognizer(gr)
+    
+    var long = UILongPressGestureRecognizer(target: self, action: NSSelectorFromString("handleLongPress:"))
+//    long.numberOfTapsRequired    = 1
+//    long.numberOfTouchesRequired = 1
+    addGestureRecognizer(long)
   }
   
   private func setFigure(figure: Figure) {
@@ -81,6 +87,18 @@ class FigureView: UIView {
     if sender.state == .Ended && !_moved {
       selected = !selected
 //      println("tapped+\(selected)")
+    }
+  }
+  
+  func handleLongPress(sender: UILongPressGestureRecognizer) {
+    if sender.state == .Began {
+      var alert = SCLAlertView()
+      alert.addButton("OK", action: { () -> Void in
+        self.removeFromSuperview()
+        // FIXME: DBとの連携
+      })
+      alert.showSuccess("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
+      
     }
   }
   

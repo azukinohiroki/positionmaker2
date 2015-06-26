@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SCLAlertView
 
 class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate, ParentViewDelegate {
 
