@@ -70,6 +70,7 @@ class ActionLogController {
       var move = log as! MoveObject
       var size = move.fv.frame.size
       move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
+      move.fv.checkOverlaps()
       
     case .MULTI_MOVE:
       var move = log as! MultiMoveObject
@@ -79,6 +80,7 @@ class ActionLogController {
       var dy = move.to.y - move.from.y
       for fv in move.fvs {
         fv.center = CGPointMake(fv.center.x - dx, fv.center.y - dy)
+        fv.checkOverlaps()
       }
     }
 
@@ -96,6 +98,7 @@ class ActionLogController {
       var move = log as! MoveObject
       var size = move.fv.frame.size
       move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
+      move.fv.checkOverlaps()
       
     case .MULTI_MOVE:
       var move = log as! MultiMoveObject
@@ -105,6 +108,7 @@ class ActionLogController {
       var dy = move.to.y - move.from.y
       for fv in move.fvs {
         fv.center = CGPointMake(fv.center.x + dx, fv.center.y + dy)
+        fv.checkOverlaps()
       }
     }
     

@@ -10,8 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-let Blue = 0x0000FF
-
 class Figure: NSManagedObject {
   
   @NSManaged var id: NSNumber
@@ -21,17 +19,18 @@ class Figure: NSManagedObject {
   @NSManaged var direction: NSDecimalNumber
   @NSManaged var height: NSNumber
   
-  static let Red   :NSNumber = 0xFF0000
-  static var Green :NSNumber = 0x00FF00
+  static let Red:   NSNumber = 0xFF0000
+  static let Green: NSNumber = 0x00FF00
+  static let Blue:  NSNumber = 0x0000FF
 
   static func defaultFigure() -> Figure {
     
     var appDelegate          = UIApplication.sharedApplication().delegate as! AppDelegate
-    var managedObjectContext = appDelegate.coreDataHelper.managedObjectContext!;
+    var managedObjectContext = appDelegate.coreDataHelper.managedObjectContext!
     var entity = NSEntityDescription.entityForName("Figure", inManagedObjectContext: managedObjectContext)!
     
     var f = Figure(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
-    f.color = NSNumber(int: 0x0000FF)
+    f.color = Blue
     f.name  = ""
     
     return f

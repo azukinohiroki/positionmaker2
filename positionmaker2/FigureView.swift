@@ -154,6 +154,18 @@ class FigureView: UIView {
     
     _moved = false
     
+    checkOverlaps()
+    checkOthersOverlap()
+    
+    if _recording {
+      saveMotion()
+    }
+    
+    delegate?.endTouch(self, beganPoint: _beganPoint)
+  }
+  
+  func checkOverlaps() {
+    
     var oldOverlaps = _overlapFVs
     for fv in oldOverlaps {
       fv.requestDeleteFV(self)
@@ -161,17 +173,13 @@ class FigureView: UIView {
     
     _overlapFVs = [FigureView]()
     for fv in _vc.figureViews {
-      if (self == fv) { continue; }
+      if self == fv { continue; }
       if CGRectContainsPoint(self.frame, fv.center) {
 //      if CGRectIntersectsRect(self.frame, fv.frame) {
         _overlapFVs.append(fv)
         self.alpha = 0.5
         fv.alpha   = 0.5
       }
-    }
-    
-    if _recording {
-      saveMotion()
     }
     
     if _overlapFVs.isEmpty {
@@ -183,7 +191,7 @@ class FigureView: UIView {
       }
       _overlapFVs.append(self)
     }
-    delegate?.endTouch(self, beganPoint: _beganPoint)
+    
   }
   
   func requestAddFV(fv: FigureView) {
@@ -205,6 +213,13 @@ class FigureView: UIView {
         _overlapFVs.removeAll(keepCapacity: true)
         alpha = 1
       }
+    }
+  }
+  
+  func checkOthersOverlap() {
+    for fv in _vc.figureViews {
+      if !fv.selected || self == fv { continue }
+      fv.checkOverlaps()
     }
   }
   
