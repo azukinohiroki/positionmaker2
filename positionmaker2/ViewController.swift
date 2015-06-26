@@ -71,6 +71,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   }
   
   
+  func removeFVFromList(fv: FigureView) {
+    figureViews = figureViews.filter() { $0 != fv }
+  }
+  
+  
   // MARK: touch events
   /*
   private var _lastTouched = CGPointMake(0, 0)

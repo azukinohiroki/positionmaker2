@@ -64,8 +64,7 @@ class FigureView: UIView {
     addGestureRecognizer(gr)
     
     var long = UILongPressGestureRecognizer(target: self, action: NSSelectorFromString("handleLongPress:"))
-//    long.numberOfTapsRequired    = 1
-//    long.numberOfTouchesRequired = 1
+    long.minimumPressDuration = 0.8
     addGestureRecognizer(long)
   }
   
@@ -95,9 +94,10 @@ class FigureView: UIView {
       var alert = SCLAlertView()
       alert.addButton("OK", action: { () -> Void in
         self.removeFromSuperview()
+        self._vc.removeFVFromList(self)
         // FIXME: DBとの連携
       })
-      alert.showSuccess("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
+      alert.showWarning("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
       
     }
   }
