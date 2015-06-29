@@ -19,11 +19,13 @@ protocol FigureViewDelegate : class {
 
 
 
-class FigureView: UIView {
+class FigureView: UIView, UITextFieldDelegate {
   
   private var _figure: Figure!
   private var _parent: UIView?
   private var _vc: ViewController!
+  
+  private let _label: UITextField!
   
   weak var delegate: FigureViewDelegate? = nil
   var selected: Bool = false {
@@ -34,11 +36,14 @@ class FigureView: UIView {
   
   
   required init(coder aDecoder: NSCoder) {
+    
+    _label       = UITextField()
     super.init(coder: aDecoder)
   }
   
   init(figure: Figure, vc: ViewController, frame: CGRect) {
     
+    _label       = UITextField()
     super.init(frame: frame)
     
     initFigureView(figure, vc: vc, frame: frame)
@@ -47,6 +52,7 @@ class FigureView: UIView {
   init(figure: Figure, vc: ViewController) {
     
     var frame = CGRect(origin: CGPointZero, size: CGSizeMake(30, 30))
+    _label    = UITextField()
     super.init(frame: frame)
     
     initFigureView(figure, vc: vc, frame: frame)
@@ -66,6 +72,16 @@ class FigureView: UIView {
     var long = UILongPressGestureRecognizer(target: self, action: NSSelectorFromString("handleLongPress:"))
     long.minimumPressDuration = 0.8
     addGestureRecognizer(long)
+    
+    var dbl = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleDoubleTap:"))
+    dbl.numberOfTapsRequired    = 2
+    dbl.numberOfTouchesRequired = 1
+    addGestureRecognizer(dbl)
+    
+    _label.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
+    _label.userInteractionEnabled    = false
+    _label.delegate = self
+    addSubview(_label)
   }
   
   private func setFigure(figure: Figure) {
@@ -103,6 +119,14 @@ class FigureView: UIView {
       })
       alert.showWarning("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
       
+    }
+  }
+  
+  func handleDoubleTap(sender: UITapGestureRecognizer) {
+    selected = false
+    _label.userInteractionEnabled = true
+    if _label.canBecomeFirstResponder() {
+      _label.becomeFirstResponder()
     }
   }
   
@@ -316,5 +340,45 @@ class FigureView: UIView {
       
       usleep(UInt32(wait))
     }
+  }
+  
+  
+  
+  // MARK: UITextFieldDelegate
+  
+  func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    textField.font = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    return true
+  }
+  
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    textField.userInteractionEnabled = false
+    return false
+  }
+  
+  func textFieldDidEndEditing(textField: UITextField) {
+    fitFontSize(textField)
+  }
+  
+  private func fitFontSize(textField: UITextField) {
+    var frame = textField.frame
+    textField.sizeToFit()
+    if textField.frame.size.width < frame.size.width && textField.frame.size.height < frame.height {
+      textField.frame = frame
+      return
+    }
+    textField.frame = frame
+    
+    var font = textField.font.pointSize
+    if  font < 1 {
+      textField.font = UIFont.systemFontOfSize(UIFont.systemFontSize())
+      return
+    }
+    
+    --font
+    textField.font = UIFont.systemFontOfSize(font)
+    
+    fitFontSize(textField)
   }
 }
