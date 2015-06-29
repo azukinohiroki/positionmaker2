@@ -364,7 +364,7 @@ class FigureView: UIView, UITextFieldDelegate {
   private func fitFontSize(textField: UITextField) {
     var frame = textField.frame
     textField.sizeToFit()
-    if textField.frame.size.width < frame.size.width && textField.frame.size.height < frame.height {
+    if checkFontSize(textField, frame) {
       textField.frame = frame
       return
     }
@@ -380,5 +380,11 @@ class FigureView: UIView, UITextFieldDelegate {
     textField.font = UIFont.systemFontOfSize(font)
     
     fitFontSize(textField)
+  }
+  
+  private func checkFontSize(tf: UITextField, _ frame: CGRect) -> Bool {
+    var size1 = tf.frame.size
+    var size2 = frame.size
+    return CGSizeEqualToSize(size1, size2) || (size1.width < size2.width && size1.height < size2.height)
   }
 }
