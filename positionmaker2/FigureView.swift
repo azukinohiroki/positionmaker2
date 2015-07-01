@@ -119,17 +119,26 @@ class FigureView: UIView, UITextFieldDelegate {
       })
       alert.showWarning("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
       
+    } else if sender.state == .Ended {
+      _longPressed = false
     }
   }
+  
+  private var _lastLabel = ""
   
   func handleDoubleTap(sender: UITapGestureRecognizer) {
     selected = false
     _label.userInteractionEnabled = true
     if _label.canBecomeFirstResponder() {
       _label.becomeFirstResponder()
+      _lastLabel = _label.text
     }
   }
   
+  func setLabel(text: String) {
+    _label.text = text
+    fitFontSize(_label)
+  }
   
   
   private var _beganPoint: CGPoint = CGPointZero
@@ -198,8 +207,6 @@ class FigureView: UIView, UITextFieldDelegate {
   
   func endTouch() {
     
-    _moved = false
-    
     checkOverlaps()
     checkOthersOverlap()
     
@@ -207,9 +214,11 @@ class FigureView: UIView, UITextFieldDelegate {
       saveMotion()
     }
     
-    if !_longPressed {
+    if !_longPressed && _moved {
       delegate?.endTouch(self, beganPoint: _beganPoint)
     }
+    
+    _moved = false
   }
   
   func checkOverlaps() {
@@ -359,6 +368,7 @@ class FigureView: UIView, UITextFieldDelegate {
   
   func textFieldDidEndEditing(textField: UITextField) {
     fitFontSize(textField)
+    _vc.actionLogController.addLabelChange(from: _lastLabel, to: textField.text, fv: self)
   }
   
   private func fitFontSize(textField: UITextField) {

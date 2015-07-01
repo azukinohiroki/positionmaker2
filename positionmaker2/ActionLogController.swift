@@ -13,6 +13,7 @@ enum ActionLogType: Int {
   case MOVE
   case MULTI_MOVE
   case DELETE
+  case LABEL_CHANGE
 }
 
 class ActionLogObject {
@@ -53,6 +54,18 @@ class DeleteObject : ActionLogObject {
   }
 }
 
+class LabelChangeObject : ActionLogObject {
+  var from: String
+  var to:   String
+  var fv:   FigureView
+  init(from: String, to:String, fv: FigureView) {
+    self.from = from
+    self.to   = to
+    self.fv   = fv
+    super.init(type: .LABEL_CHANGE)
+  }
+}
+
 class ActionLogController {
   
   private let _undoLog: NSMutableArray = NSMutableArray()
@@ -60,20 +73,27 @@ class ActionLogController {
   
   func addMove(#from: CGPoint, to: CGPoint, fv:FigureView) {
     var dat = MoveObject(from: from, to: to, fv: fv)
-    _undoLog.addObject(dat)
-    _redoLog.removeAllObjects()
+    save(dat)
   }
   
   func addMultiMove(#from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
     var dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
-    _undoLog.addObject(dat)
-    _redoLog.removeAllObjects()
+    save(dat)
   }
   
   func addDelete(#fv: FigureView, origin: CGPoint, vc: ViewController) {
     var frame = fv.frame
     fv.frame = CGRectMake(origin.x, origin.y, CGRectGetWidth(frame), CGRectGetHeight(frame))
     var dat = DeleteObject(fv: fv, vc: vc)
+    save(dat)
+  }
+  
+  func addLabelChange(#from: String, to: String, fv:FigureView) {
+    var dat = LabelChangeObject(from: from, to: to, fv: fv)
+    save(dat)
+  }
+  
+  private func save(dat: ActionLogObject) {
     _undoLog.addObject(dat)
     _redoLog.removeAllObjects()
   }
@@ -107,6 +127,10 @@ class ActionLogController {
       del.vc.addFVToList(del.fv)
       del.vc.baseView.addSubview(del.fv)
       // FIXME: DB
+      
+    case .LABEL_CHANGE:
+      var lbl = log as! LabelChangeObject
+      lbl.fv.setLabel(lbl.from)
     }
 
     return log
@@ -141,6 +165,10 @@ class ActionLogController {
       del.fv.removeFromSuperview()
       del.vc.removeFVFromList(del.fv)
       // FIXME: DB
+      
+    case .LABEL_CHANGE:
+      var lbl = log as! LabelChangeObject
+      lbl.fv.setLabel(lbl.to)
     }
     
     return log
