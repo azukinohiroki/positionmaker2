@@ -115,7 +115,7 @@ class FigureView: UIView, UITextFieldDelegate {
       alert.addButton("OK", action: { () -> Void in
         self.removeFromSuperview()
         self._vc.removeFVFromList(self)
-        self._vc.actionLogController.addDelete(fv: self, origin: self._beganPoint, vc: self._vc)
+        ActionLogController.instance().addDelete(fv: self, origin: self._beganPoint, vc: self._vc)
         // FIXME: DBとの連携
       })
       alert.showWarning("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
@@ -175,10 +175,6 @@ class FigureView: UIView, UITextFieldDelegate {
       moveOthers(dx, dy)
       
       _lastTouched = point
-      
-//      if _recording {
-//        recordMotion(CGPointMake(dx, dy))
-//      }
     }
   }
   
@@ -210,10 +206,6 @@ class FigureView: UIView, UITextFieldDelegate {
     
     checkOverlaps()
     checkOthersOverlap()
-    
-//    if _recording {
-//      saveMotion()
-//    }
     
     if !_longPressed && _moved {
       delegate?.endTouch(self, beganPoint: _beganPoint)
@@ -282,77 +274,6 @@ class FigureView: UIView, UITextFieldDelegate {
   }
   
   
-  /*
-  private var _recording = true
-  private var _recordedMotion: [[CGPoint]] = []
-  private var _tmpRecordArray: [CGPoint]   = []
-  private var _startingPoint: CGPoint      = CGPointZero
-  
-  private func recordMotion(p: CGPoint) {
-    _tmpRecordArray.append(p)
-  }
-  
-  private func saveMotion() {
-    _recordedMotion.append(_tmpRecordArray)
-    _tmpRecordArray = []
-  }
-  
-  private var _playing = false
-  
-  func startPlaying() {
-    
-    _playing = true
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-      
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        var p = self._startingPoint
-        var s = self.frame.size
-        UIView.animateWithDuration(1, animations: { () -> Void in
-          self.frame = CGRectMake(p.x, p.y, s.width, s.height)
-          return
-        })
-      })
-      sleep(1)
-      
-      var index = 0
-      while self._playing {
-        if self._recordedMotion.count <= index {
-          self._playing = false
-          return
-        }
-        
-        var array = self._recordedMotion[index]
-        if array.count == 0 {
-          continue
-        }
-        
-        self.playASequence(array)
-        ++index
-      }
-    })
-  }
-  
-  private func playASequence(array: [CGPoint]) {
-    //    _recording = false
-    var interval = 1//_vc.playInterval
-    var count = array.count
-    
-    if count == 0 { return }
-    
-    var wait = (interval * 50000) / count
-    
-    for p in array {
-      
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        self.center = CGPointMake(self.center.x - p.x, self.center.y - p.y)
-        return
-      })
-      
-      usleep(UInt32(wait))
-    }
-  }
-  */
-  
   
   // MARK: UITextFieldDelegate
   
@@ -369,7 +290,7 @@ class FigureView: UIView, UITextFieldDelegate {
   
   func textFieldDidEndEditing(textField: UITextField) {
     fitFontSize(textField)
-    _vc.actionLogController.addLabelChange(from: _lastLabel, to: textField.text, fv: self)
+    ActionLogController.instance().addLabelChange(from: _lastLabel, to: textField.text, fv: self)
   }
   
   private func fitFontSize(textField: UITextField) {

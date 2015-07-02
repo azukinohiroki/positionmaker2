@@ -19,9 +19,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   private (set) var figureViews = [FigureView]()
   private (set) var playInterval = 3
-  
-  let actionLogController = ActionLogController()
-  private var _recordPlayController: RecordPlayController!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,7 +29,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     
     dashDrawingView.userInteractionEnabled = false
     
-    _recordPlayController = RecordPlayController.recordPlayController()
+    var recordPlayController = RecordPlayController.instance()
     
     var figure = Figure.defaultFigure()
 
@@ -47,7 +44,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
       }
     }
     
-    _recordPlayController.startRecording(figureViews)
+    recordPlayController.startRecording(figureViews)
   }
 
   override func didReceiveMemoryWarning() {
@@ -62,22 +59,21 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   }
   
   @IBAction func recTapped(sender: UIButton) {
-    _recordPlayController.recordLocation(figureViews)
+
+    RecordPlayController.instance().recordLocation(figureViews)
   }
   
   @IBAction func playTapped(sender: UIButton) {
-//    for fv in figureViews {
-//      fv.startPlaying()
-//    }
-    _recordPlayController.startPlaying(figureViews)
+
+    RecordPlayController.instance().startPlaying(figureViews)
   }
   
   @IBAction func undoTapped(sender: UIButton) {
-    actionLogController.undo()
+    ActionLogController.instance().undo()
   }
   
   @IBAction func redoTapped(sender: UIButton) {
-    actionLogController.redo()
+    ActionLogController.instance().redo()
   }
   
   
@@ -142,13 +138,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     
     var o = view.frame.origin
     
+    var alc = ActionLogController.instance()
     if fvs.isEmpty {
-      actionLogController.addMove(from: beganPoint, to: o, fv: view)
+      alc.addMove(from: beganPoint, to: o, fv: view)
     } else {
-      actionLogController.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
+      alc.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
     }
-    
-//    _recordPlayController.recordLocation(figureViews)
   }
   
   

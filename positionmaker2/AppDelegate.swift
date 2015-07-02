@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   let coreDataHelper: CoreDataHelper = CoreDataHelper()
+  let actionLogController  = ActionLogController()
   let recordPlayController = RecordPlayController()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

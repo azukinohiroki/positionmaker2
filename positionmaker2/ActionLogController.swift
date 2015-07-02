@@ -71,6 +71,10 @@ class ActionLogController {
   private let _undoLog: NSMutableArray = NSMutableArray()
   private let _redoLog: NSMutableArray = NSMutableArray()
   
+  static func instance() -> ActionLogController {
+    return (UIApplication.sharedApplication().delegate as! AppDelegate).actionLogController
+  }
+  
   func addMove(#from: CGPoint, to: CGPoint, fv:FigureView) {
     var dat = MoveObject(from: from, to: to, fv: fv)
     save(dat)

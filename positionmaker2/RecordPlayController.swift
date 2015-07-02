@@ -23,7 +23,7 @@ class RecordPlayObject {
 
 class RecordPlayController {
   
-  static func recordPlayController() -> RecordPlayController {
+  static func instance() -> RecordPlayController {
     return (UIApplication.sharedApplication().delegate as! AppDelegate).recordPlayController
   }
   
@@ -96,51 +96,5 @@ class RecordPlayController {
       sleep(_sleepInternval)
     }
     _playing = false
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    var index = 0
-//    while self._playing {
-//      if self._recordedMotion.count <= index {
-//        self._playing = false
-//        return
-//      }
-//      
-//      var array = self._recordedMotion[index]
-//      if array.count == 0 {
-//        continue
-//      }
-//      
-//      self.playASequence(array)
-//      ++index
-//    }
   }
-  
-//  private func playASequence(array: [CGPoint]) {
-//    //    _recording = false
-//    var interval = 1//_vc.playInterval
-//    var count = array.count
-//    
-//    if count == 0 { return }
-//    
-//    var wait = (interval * 50000) / count
-//    
-//    for p in array {
-//      
-//      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//        self.center = CGPointMake(self.center.x - p.x, self.center.y - p.y)
-//        return
-//      })
-//
-//      usleep(UInt32(wait))
-//    }
-//  }
-
 }
