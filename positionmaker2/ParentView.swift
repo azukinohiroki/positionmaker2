@@ -72,6 +72,7 @@ class ParentView : UIView {
     if _dTapped {
       _dTapped = false
       dashDrawingView?.clear()
+      _lastTouch = nil
     }
   }
 }

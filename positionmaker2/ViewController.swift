@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     super.viewDidLoad()
     
     baseScrollView.delegate = self
+    baseScrollView.delaysContentTouches = false
+    
     baseView.delegate = self
     baseView.dashDrawingView = dashDrawingView
     

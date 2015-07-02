@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SphereMenuDelegate{
-    func sphereDidSelected(index:Int)
+    func sphereDidSelected(index:Int, menu:SphereMenu)
 }
 
 class SphereMenu:UIView, UICollisionBehaviorDelegate{
@@ -159,7 +159,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     {
         var tag = gesture.view?.tag
         tag? -= Int(kItemInitTag)
-        self.delegate?.sphereDidSelected(tag!)
+        self.delegate?.sphereDidSelected(tag!, menu: self)
         self.shrinkSubmenu()
     }
 

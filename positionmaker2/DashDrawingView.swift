@@ -32,6 +32,7 @@ class DashDrawingView: UIView {
   
   func clear() {
     _draw = false
+    _drawingRect = CGRectZero
     setNeedsDisplay()
   }
   

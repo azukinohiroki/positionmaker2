@@ -34,10 +34,10 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woj-wY-bif" userLabel="debugView">
-                                <rect key="frame" x="300" y="300" width="300" height="300"/>
+                                <rect key="frame" x="300" y="550" width="300" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKe-r1-woX">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +46,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="DGS-OZ-8cY"/>
+                                    <constraint firstAttribute="height" constant="50" id="DGS-OZ-8cY"/>
                                     <constraint firstAttribute="height" secondItem="BKe-r1-woX" secondAttribute="height" id="Pho-Hk-wOW"/>
                                     <constraint firstItem="BKe-r1-woX" firstAttribute="leading" secondItem="woj-wY-bif" secondAttribute="leading" id="fnF-Rm-Yzq"/>
                                     <constraint firstAttribute="width" constant="300" id="jLL-Vr-Q8v"/>

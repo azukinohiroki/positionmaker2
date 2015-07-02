@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SCLAlertView
+import SwiftColorPicker
 
 
 
@@ -19,7 +20,7 @@ protocol FigureViewDelegate : class {
 
 
 
-class FigureView: UIView, UITextFieldDelegate {
+class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   private var _figure: Figure!
   private var _parent: UIView?
@@ -99,6 +100,8 @@ class FigureView: UIView, UITextFieldDelegate {
     self.backgroundColor = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
   }
   
+  
+  
   func handleTap(sender: UITapGestureRecognizer) {
     if sender.state == .Ended && !_moved {
       selected = !selected
@@ -106,24 +109,59 @@ class FigureView: UIView, UITextFieldDelegate {
     }
   }
   
+  
+  
   private var _longPressed = false
   
   func handleLongPress(sender: UILongPressGestureRecognizer) {
     if sender.state == .Began {
       _longPressed = true
       var alert = SCLAlertView()
-      alert.addButton("OK", action: { () -> Void in
+      alert.addButton("削除") {
         self.removeFromSuperview()
         self._vc.removeFVFromList(self)
         ActionLogController.instance().addDelete(fv: self, origin: self._beganPoint, vc: self._vc)
         // FIXME: DBとの連携
-      })
-      alert.showWarning("確認", subTitle: "削除しますか？", closeButtonTitle: "CANCEL")
+      }
+      alert.addButton("色変更") {
+        let start = UIImage(named: "start")
+        let image1 = UIImage(named: "icon-facebook")
+        let image2 = UIImage(named: "icon-email")
+        let image3 = UIImage(named: "icon-twitter")
+        var images:[UIImage] = [image1!,image2!,image3!]
+        var menu = SphereMenu(startPoint: CGPointMake(160, 320), startImage: start!, submenuImages:images, tapToDismiss:true)
+        menu.delegate = self
+        self._vc.baseView.addSubview(menu)
+      }
+      /*alert.addButton("色変更2") {
+        var colorWell:ColorWell = ColorWell()
+        var colorPicker:ColorPicker = ColorPicker()
+        var huePicker:HuePicker = HuePicker()
+        
+        // Setup
+        var pickerController = ColorPickerController(svPickerView: colorPicker, huePickerView: huePicker, colorWell: colorWell)
+        pickerController.color = UIColor.redColor()
+        
+        // get color:
+        pickerController.color
+        
+        // get color updates:
+        pickerController.onColorChange = {(color, finished) in
+          if finished {
+            self.view.backgroundColor = UIColor.whiteColor() // reset background color to white
+          } else {
+            self.view.backgroundColor = color // set background color to current selected color (finger is still down)
+          }
+        }
+      }*/
+      alert.showWarning("メニュー", subTitle: "選択してください", closeButtonTitle: "CANCEL")
       
     } else if sender.state == .Ended {
       _longPressed = false
     }
   }
+  
+  
   
   private var _lastLabel = ""
   
@@ -140,6 +178,7 @@ class FigureView: UIView, UITextFieldDelegate {
     _label.text = text
     fitFontSize(_label)
   }
+  
   
   
   private var _beganPoint: CGPoint = CGPointZero
@@ -318,5 +357,16 @@ class FigureView: UIView, UITextFieldDelegate {
     var size1 = tf.frame.size
     var size2 = frame.size
     return CGSizeEqualToSize(size1, size2) || (size1.width < size2.width && size1.height < size2.height)
+  }
+  
+  
+  
+  // MARK: SphereMenuDelegate
+  
+  func sphereDidSelected(index: Int, menu: SphereMenu) {
+    NSLog("sphereDidSelected:%d", index)
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
+      menu.hide()
+//    }
   }
 }
