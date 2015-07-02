@@ -22,6 +22,8 @@
 		F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578706A1B2AC37700FC66D6 /* MyScrollView.swift */; };
 		F5B566A81B39523F00DBB978 /* DashDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B566A71B39523F00DBB978 /* DashDrawingView.swift */; };
 		F5B566AA1B39556B00DBB978 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B566A91B39556B00DBB978 /* ParentView.swift */; };
+		F5C84ECA1B44F38C0051C98B /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84EC91B44F38C0051C98B /* SphereMenu.swift */; };
+		F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		F578706A1B2AC37700FC66D6 /* MyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
 		F5B566A71B39523F00DBB978 /* DashDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashDrawingView.swift; sourceTree = "<group>"; };
 		F5B566A91B39556B00DBB978 /* ParentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		F5C84EC91B44F38C0051C98B /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
+		F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,14 +124,16 @@
 			children = (
 				F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */,
 				F578703E1B282CEF00FC66D6 /* AppDelegate.swift */,
+				F5272A831B33FE660021B01B /* ActionLogController.swift */,
+				F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */,
 				F57870431B282CEF00FC66D6 /* ViewController.swift */,
+				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
 				F5B566A91B39556B00DBB978 /* ParentView.swift */,
 				F5B566A71B39523F00DBB978 /* DashDrawingView.swift */,
-				F5272A831B33FE660021B01B /* ActionLogController.swift */,
-				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
 				F57870681B295CD000FC66D6 /* FigureView.swift */,
 				F57870641B283BB900FC66D6 /* Figure.swift */,
 				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
+				F5C84EC91B44F38C0051C98B /* SphereMenu.swift */,
 				F57870451B282CEF00FC66D6 /* Main.storyboard */,
 				F57870481B282CEF00FC66D6 /* Images.xcassets */,
 				F578704A1B282CEF00FC66D6 /* LaunchScreen.xib */,
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5272A841B33FE660021B01B /* ActionLogController.swift in Sources */,
+				F5C84ECA1B44F38C0051C98B /* SphereMenu.swift in Sources */,
 				F57870671B2945EC00FC66D6 /* CoreDataHelper.swift in Sources */,
 				F57870441B282CEF00FC66D6 /* ViewController.swift in Sources */,
 				F5B566A81B39523F00DBB978 /* DashDrawingView.swift in Sources */,
@@ -328,6 +335,7 @@
 				F57870421B282CEF00FC66D6 /* positionmaker2.xcdatamodeld in Sources */,
 				F578703F1B282CEF00FC66D6 /* AppDelegate.swift in Sources */,
 				F57870651B283BB900FC66D6 /* Figure.swift in Sources */,
+				F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */,
 				F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

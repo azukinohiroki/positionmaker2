@@ -28,6 +28,7 @@ class FigureView: UIView, UITextFieldDelegate {
   private let _label: UITextField!
   
   weak var delegate: FigureViewDelegate? = nil
+  
   var selected: Bool = false {
     didSet {
       self.selected ? self.backgroundColor = UIColor.lightGrayColor() : setColor(_figure)
@@ -62,7 +63,7 @@ class FigureView: UIView, UITextFieldDelegate {
   private func initFigureView(figure: Figure, vc: ViewController, frame: CGRect) {
     _vc  = vc
     setFigure(figure)
-    _startingPoint = frame.origin
+//    _startingPoint = frame.origin
     
     var gr = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleTap:"))
     gr.numberOfTapsRequired    = 1
@@ -175,9 +176,9 @@ class FigureView: UIView, UITextFieldDelegate {
       
       _lastTouched = point
       
-      if _recording {
-        recordMotion(CGPointMake(dx, dy))
-      }
+//      if _recording {
+//        recordMotion(CGPointMake(dx, dy))
+//      }
     }
   }
   
@@ -210,9 +211,9 @@ class FigureView: UIView, UITextFieldDelegate {
     checkOverlaps()
     checkOthersOverlap()
     
-    if _recording {
-      saveMotion()
-    }
+//    if _recording {
+//      saveMotion()
+//    }
     
     if !_longPressed && _moved {
       delegate?.endTouch(self, beganPoint: _beganPoint)
@@ -281,7 +282,7 @@ class FigureView: UIView, UITextFieldDelegate {
   }
   
   
-  
+  /*
   private var _recording = true
   private var _recordedMotion: [[CGPoint]] = []
   private var _tmpRecordArray: [CGPoint]   = []
@@ -350,7 +351,7 @@ class FigureView: UIView, UITextFieldDelegate {
       usleep(UInt32(wait))
     }
   }
-  
+  */
   
   
   // MARK: UITextFieldDelegate

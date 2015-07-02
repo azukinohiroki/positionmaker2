@@ -12,8 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  var coreDataHelper: CoreDataHelper = CoreDataHelper()
-
+  let coreDataHelper: CoreDataHelper = CoreDataHelper()
+  let recordPlayController = RecordPlayController()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.

@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   private (set) var playInterval = 3
   
   let actionLogController = ActionLogController()
+  private var _recordPlayController: RecordPlayController!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +31,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     baseView.dashDrawingView = dashDrawingView
     
     dashDrawingView.userInteractionEnabled = false
+    
+    _recordPlayController = RecordPlayController.recordPlayController()
     
     var figure = Figure.defaultFigure()
 
@@ -43,6 +46,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
         figureViews.append(fv)
       }
     }
+    
+    _recordPlayController.startRecording(figureViews)
   }
 
   override func didReceiveMemoryWarning() {
@@ -56,10 +61,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     self.debugLabel.text = NSString(format: "w:%d h:%d", Int(self.view.frame.width), Int(self.view.frame.height)) as String
   }
   
-  @IBAction func btnTapped(sender: UIButton) {
-    for fv in figureViews {
-      fv.startPlaying()
-    }
+  @IBAction func recTapped(sender: UIButton) {
+    _recordPlayController.recordLocation(figureViews)
+  }
+  
+  @IBAction func playTapped(sender: UIButton) {
+//    for fv in figureViews {
+//      fv.startPlaying()
+//    }
+    _recordPlayController.startPlaying(figureViews)
   }
   
   @IBAction func undoTapped(sender: UIButton) {
@@ -103,11 +113,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     super.touchesMoved(touches, withEvent: event)
   }
   */
+  
+  
   // MARK: UIScrollViewDelegate
   
   func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
     return baseView
   }
+  
+  
   
   // MARK: FigureViewDelegate
   
@@ -133,7 +147,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     } else {
       actionLogController.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
     }
+    
+//    _recordPlayController.recordLocation(figureViews)
   }
+  
+  
   
   // MARK: ParentViewDelegate
   
