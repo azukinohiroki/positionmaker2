@@ -160,8 +160,13 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     if doubleTapped {
       var rect = dashDrawingView.getDrawingRect()
       
+      var scale = baseScrollView.zoomScale
+      var offset = baseScrollView.contentOffset
+      var frame = baseView.frame
+      
       for fv in figureViews {
-        fv.selected = CGRectContainsPoint(rect, fv.center)
+        var p = CGPointMake(fv.center.x*scale-offset.x, fv.center.y*scale-offset.y)
+        fv.selected = CGRectContainsPoint(rect, p)
       }
       
     } else {

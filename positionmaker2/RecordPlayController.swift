@@ -27,7 +27,7 @@ class RecordPlayController {
     return (UIApplication.sharedApplication().delegate as! AppDelegate).recordPlayController
   }
   
-  
+
   private var _recording = false
   private var _record: [RecordPlayObject] = []
   
