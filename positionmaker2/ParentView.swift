@@ -75,4 +75,45 @@ class ParentView : UIView {
       _lastTouch = nil
     }
   }
+  
+  private var _draw = false
+  private var _numVerticalLines   = 0
+  private var _numHorizontalLines = 0
+  
+  
+  override func drawRect(rect: CGRect) {
+    if !_draw {
+      return
+    }
+    
+    var xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
+    var x: CGFloat =  0
+    var y: CGFloat = 20
+    
+    for _ in 0 ..< _numVerticalLines {
+      x += xInterval
+      var bezier = UIBezierPath()
+      bezier.moveToPoint(CGPointMake(x, y))
+      bezier.addLineToPoint(CGPointMake(x, self.frame.height-y))
+      UIColor.grayColor().setStroke()
+      bezier.lineWidth = 2
+      bezier.stroke()
+    }
+  }
+  
+  func setNumberOfVerticalLines(num: Int) {
+    
+    setNeedsDisplay()
+    
+    if num <= 0 {
+      _numVerticalLines = 0
+      if _numHorizontalLines == 0 {
+        _draw = false
+      }
+      return
+    }
+    
+    _draw = true
+    _numVerticalLines = num;
+  }
 }
