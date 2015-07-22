@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import SCLAlertView
 
-class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate, ParentViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate, ParentViewDelegate, UIPickerViewDelegate {
 
   @IBOutlet var baseScrollView: MyScrollView!
   @IBOutlet var baseView: ParentView!
@@ -78,6 +78,43 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     ActionLogController.instance().redo()
   }
   
+  var pickerView: UIPickerView!
+  
+  @IBAction func linesTapped(sender: UIButton) {
+    var size:CGFloat = 200
+    pickerView = UIPickerView(frame: CGRectMake(0, self.view.frame.height-size, self.view.frame.width, size))
+    pickerView.backgroundColor = UIColor.whiteColor()
+    pickerView.delegate = self
+    self.view.addSubview(pickerView)
+  }
+  
+  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return 16384
+  }
+  
+  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    var strs = [
+      "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+    ]
+    
+    return strs[row % 10]
+  }
+  
+  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    pickerViewLoaded(pickerView, blah: nil)
+  }
+  
+  func pickerViewLoaded(pickerView: UIPickerView, blah: AnyObject?) {
+    var max = 16384
+    var base10 = (max/2) - (max/2) % 10
+    pickerView.selectRow(pickerView.selectedRowInComponent(0)%10+base10, inComponent: 0, animated: false)
+  }
+  
+  
   
   func removeFVFromList(fv: FigureView) {
     figureViews = figureViews.filter() { $0 != fv }
@@ -85,6 +122,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   func addFVToList(fv: FigureView) {
     figureViews.append(fv)
+  }
+  
+  
+  
+  override func shouldAutorotate() -> Bool {
+    return true
   }
   
   

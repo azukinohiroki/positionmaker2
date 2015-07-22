@@ -106,6 +106,19 @@
                                     <action selector="recTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fXI-Bo-Een"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTP-E7-nhV">
+                                <rect key="frame" x="16" y="360" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="C22-nX-iRd"/>
+                                    <constraint firstAttribute="height" constant="30" id="jMy-NH-bza"/>
+                                </constraints>
+                                <state key="normal" title="Lines">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JeQ-tP-Oej"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B93-a2-YAK" customClass="DashDrawingView" customModule="positionmaker2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -136,6 +149,7 @@
                             <constraint firstItem="iEx-7c-5L4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HeF-MI-bbe"/>
                             <constraint firstItem="FyY-PM-If1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="520" id="ICA-cP-M2D"/>
                             <constraint firstItem="pzx-EA-kyN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JCv-qu-eF7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nTP-E7-nhV" secondAttribute="bottom" constant="210" id="JjL-9c-Xog"/>
                             <constraint firstAttribute="width" secondItem="hKX-H1-WB1" secondAttribute="width" id="MGr-fp-Vc5"/>
                             <constraint firstItem="FyY-PM-If1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Nct-Aa-af4"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hVT-pn-DkR" secondAttribute="bottom" constant="240" id="NeS-D2-fYt"/>
@@ -146,6 +160,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iEx-7c-5L4" secondAttribute="trailing" constant="522" id="Y8F-So-1MO"/>
                             <constraint firstItem="FyY-PM-If1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YBc-Tm-ztf"/>
                             <constraint firstItem="iEx-7c-5L4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="550" id="ZEQ-Xi-tBZ"/>
+                            <constraint firstItem="nTP-E7-nhV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZSr-1g-oAL"/>
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="c8V-Q3-ut7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iEx-7c-5L4" secondAttribute="bottom" constant="300" id="dds-Fs-xFI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pzx-EA-kyN" secondAttribute="bottom" constant="330" id="fOu-RG-a3I"/>
@@ -153,6 +168,7 @@
                             <constraint firstItem="SUk-qE-P5p" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gqB-Kh-enY"/>
                             <constraint firstItem="FyY-PM-If1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hV1-g8-gKV"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="woj-wY-bif" secondAttribute="bottom" id="lFd-hn-DjU"/>
+                            <constraint firstItem="nTP-E7-nhV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lOH-uc-1si"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="B93-a2-YAK" secondAttribute="bottom" id="ldb-HV-JeL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="woj-wY-bif" secondAttribute="trailing" constant="-16" id="mIx-gt-0Yu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FyY-PM-If1" secondAttribute="bottom" constant="270" id="nWU-IC-SKZ"/>
@@ -161,6 +177,7 @@
                             <constraint firstItem="B93-a2-YAK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="qS3-Me-Qgl"/>
                             <constraint firstItem="pzx-EA-kyN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="240" id="siU-PG-pUi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="B93-a2-YAK" secondAttribute="trailing" constant="-16" id="ttE-f4-q8B"/>
+                            <constraint firstItem="woj-wY-bif" firstAttribute="top" secondItem="nTP-E7-nhV" secondAttribute="bottom" constant="235" id="vRH-4G-at6"/>
                             <constraint firstAttribute="height" secondItem="SUk-qE-P5p" secondAttribute="height" id="xvO-x8-x5P"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FyY-PM-If1" secondAttribute="bottom" constant="30" id="yzq-VQ-UB3"/>
                         </constraints>
@@ -178,9 +195,11 @@
                                 <exclude reference="Nct-Aa-af4"/>
                                 <exclude reference="YBc-Tm-ztf"/>
                                 <exclude reference="oK8-8O-B0N"/>
-                                <exclude reference="S4t-Tf-VrB"/>
+                                <exclude reference="lOH-uc-1si"/>
                                 <exclude reference="ldb-HV-JeL"/>
                                 <exclude reference="yzq-VQ-UB3"/>
+                                <exclude reference="S4t-Tf-VrB"/>
+                                <exclude reference="vRH-4G-at6"/>
                             </mask>
                         </variation>
                     </view>
