@@ -28,13 +28,13 @@ class ParentView : UIView {
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesBegan(touches, withEvent: event)
     
-    var touch = touches.first as! UITouch
-    var p = touch.locationInView(dashDrawingView)
+    let touch = touches.first as UITouch!
+    let p = touch.locationInView(dashDrawingView)
     
     _dTapped = false
     
     if let lastTouch = _lastTouch {
-      var diff = touch.timestamp - lastTouch.timestamp
+      let diff = touch.timestamp - lastTouch.timestamp
       _dTapped = diff < 0.5
       if _dTapped {
         _dTapStartP = p

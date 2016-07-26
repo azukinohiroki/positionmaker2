@@ -1,10 +1,17 @@
-platform :ios, "8.0"
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
 
-use_frameworks!
+target 'positionmaker2' do
+  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
 
-pod "SCLAlertView"
-pod "SwiftColorPicker"
+  # Pods for positionmaker2
+  pod 'SCLAlertView'
+  pod 'SwiftHSVColorPicker'
 
-target :positionmaker2Tests, :exclusive => true do
-  # pod 'Kiwi'
+  target 'positionmaker2Tests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
 end

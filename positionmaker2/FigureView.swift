@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import SCLAlertView
-import SwiftColorPicker
+import SwiftHSVColorPicker
 
 
 
@@ -116,7 +116,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   func handleLongPress(sender: UILongPressGestureRecognizer) {
     if sender.state == .Began {
       _longPressed = true
-      var alert = SCLAlertView()
+      let alert = SCLAlertView()
       alert.addButton("削除") {
         self.removeFromSuperview()
         self._vc.removeFVFromList(self)
@@ -128,8 +128,8 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
         let image1 = UIImage(named: "icon-facebook")
         let image2 = UIImage(named: "icon-email")
         let image3 = UIImage(named: "icon-twitter")
-        var images:[UIImage] = [image1!,image2!,image3!]
-        var menu = SphereMenu(startPoint: CGPointMake(160, 320), startImage: start!, submenuImages:images, tapToDismiss:true)
+        let images:[UIImage] = [image1!,image2!,image3!]
+        let menu = SphereMenu(startPoint: CGPointMake(160, 320), startImage: start!, submenuImages:images, tapToDismiss:true)
         menu.delegate = self
         self._vc.baseView.addSubview(menu)
       }
@@ -170,7 +170,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     _label.userInteractionEnabled = true
     if _label.canBecomeFirstResponder() {
       _label.becomeFirstResponder()
-      _lastLabel = _label.text
+      _lastLabel = _label.text!
     }
   }
   
@@ -191,7 +191,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     _moved = false
     
     if let del = delegate {
-      var touch = touches.first as! UITouch
+      let touch = touches.first as UITouch!
       _parent = del.startTouch(self, touch: touch)
       _lastTouched = touch.locationInView(_parent)
       _beganPoint  = frame.origin
@@ -204,12 +204,12 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     _moved = true
     
     if let parent = _parent {
-      var touch = touches.first as! UITouch
-      var point = touch.locationInView(parent)
-      var dx = _lastTouched.x - point.x
-      var dy = _lastTouched.y - point.y
+      let touch = touches.first as UITouch!
+      let point = touch.locationInView(parent)
+      let dx = _lastTouched.x - point.x
+      let dy = _lastTouched.y - point.y
       
-      var center  = self.center
+      let center  = self.center
       self.center = CGPointMake(center.x - dx, center.y - dy)
       moveOthers(dx, dy)
       
@@ -329,11 +329,11 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   func textFieldDidEndEditing(textField: UITextField) {
     fitFontSize(textField)
-    ActionLogController.instance().addLabelChange(from: _lastLabel, to: textField.text, fv: self)
+    ActionLogController.instance().addLabelChange(from: _lastLabel, to: textField.text!, fv: self)
   }
   
   private func fitFontSize(textField: UITextField) {
-    var frame = textField.frame
+    let frame = textField.frame
     textField.sizeToFit()
     if checkFontSize(textField, frame) {
       textField.frame = frame
@@ -341,7 +341,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     }
     textField.frame = frame
     
-    var font = textField.font.pointSize
+    var font = textField.font!.pointSize
     if  font < 1 {
       textField.font = UIFont.systemFontOfSize(UIFont.systemFontSize())
       return

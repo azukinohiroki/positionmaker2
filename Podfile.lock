@@ -1,13 +1,15 @@
 PODS:
-  - SCLAlertView (0.4)
-  - SwiftColorPicker (0.0.5)
+  - SCLAlertView (0.5.9)
+  - SwiftHSVColorPicker (1.0.9)
 
 DEPENDENCIES:
   - SCLAlertView
-  - SwiftColorPicker
+  - SwiftHSVColorPicker
 
 SPEC CHECKSUMS:
-  SCLAlertView: 830bdcb850f15fed8ca25bfbf3d6db5f9d890fd4
-  SwiftColorPicker: aee0bb6991feb70f675c6ee5c91a55164ed128d7
+  SCLAlertView: d7c6a48c7d340e60206d4ed0e8ebcbff3b9d2a44
+  SwiftHSVColorPicker: 0b06e8c598cd5a59ac5a5c0fc8417908703846b2
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: fb494e6f58fb5c2b04c4c4d3ec40375dae30a4d8
+
+COCOAPODS: 1.0.1
