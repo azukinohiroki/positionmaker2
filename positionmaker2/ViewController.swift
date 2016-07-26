@@ -31,14 +31,14 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     
     dashDrawingView.userInteractionEnabled = false
     
-    var recordPlayController = RecordPlayController.instance()
+    let recordPlayController = RecordPlayController.instance()
     
-    var figure = Figure.defaultFigure()
+    let figure = Figure.defaultFigure()
 
     for j in 0..<10 {
       for i in 0..<15 {
-        var frame   = CGRectMake(CGFloat(i * 50), CGFloat(j*50 + 100), 30.0, 30.0)
-        var fv      = FigureView(figure: figure, vc: self, frame: frame)
+        let frame   = CGRectMake(CGFloat(i * 50), CGFloat(j*50 + 100), 30.0, 30.0)
+        let fv      = FigureView(figure: figure, vc: self, frame: frame)
         fv.delegate = self
         
         baseView.addSubview(fv)
@@ -81,7 +81,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   private var pickerView: UIPickerView!
   
   @IBAction func linesTapped(sender: UIButton) {
-    var size:CGFloat = 200
+    let size:CGFloat = 200
     pickerView = UIPickerView(frame: CGRectMake(0, self.view.frame.height-size, self.view.frame.width, size))
     pickerView.backgroundColor = UIColor.whiteColor()
     pickerView.delegate = self
@@ -154,8 +154,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   }
   
   func pickerViewLoaded(pickerView: UIPickerView, blah: AnyObject?) {
-    var max = 16384
-    var base10 = (max/2) - (max/2) % 10
+    let max = 16384
+    let base10 = (max/2) - (max/2) % 10
     pickerView.selectRow(pickerView.selectedRowInComponent(0)%10+base10, inComponent: 0, animated: false)
     baseView.setNumberOfVerticalLines(pickerView.selectedRowInComponent(0)%10)
   }
@@ -187,9 +187,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
       }
     }
     
-    var o = view.frame.origin
+    let o = view.frame.origin
     
-    var alc = ActionLogController.instance()
+    let alc = ActionLogController.instance()
     if fvs.isEmpty {
       alc.addMove(from: beganPoint, to: o, fv: view)
     } else {
@@ -209,14 +209,14 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     baseScrollView.canCancelContentTouches = true
     
     if doubleTapped {
-      var rect = dashDrawingView.getDrawingRect()
+      let rect = dashDrawingView.getDrawingRect()
       
-      var scale = baseScrollView.zoomScale
-      var offset = baseScrollView.contentOffset
+      let scale = baseScrollView.zoomScale
+      let offset = baseScrollView.contentOffset
       var frame = baseView.frame
       
       for fv in figureViews {
-        var p = CGPointMake(fv.center.x*scale-offset.x, fv.center.y*scale-offset.y)
+        let p = CGPointMake(fv.center.x*scale-offset.x, fv.center.y*scale-offset.y)
         fv.selected = CGRectContainsPoint(rect, p)
       }
       

@@ -75,25 +75,25 @@ class ActionLogController {
     return (UIApplication.sharedApplication().delegate as! AppDelegate).actionLogController
   }
   
-  func addMove(#from: CGPoint, to: CGPoint, fv:FigureView) {
-    var dat = MoveObject(from: from, to: to, fv: fv)
+  func addMove(from from: CGPoint, to: CGPoint, fv:FigureView) {
+    let dat = MoveObject(from: from, to: to, fv: fv)
     save(dat)
   }
   
-  func addMultiMove(#from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
-    var dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
+  func addMultiMove(from from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
+    let dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
     save(dat)
   }
   
-  func addDelete(#fv: FigureView, origin: CGPoint, vc: ViewController) {
-    var frame = fv.frame
+  func addDelete(fv fv: FigureView, origin: CGPoint, vc: ViewController) {
+    let frame = fv.frame
     fv.frame = CGRectMake(origin.x, origin.y, CGRectGetWidth(frame), CGRectGetHeight(frame))
-    var dat = DeleteObject(fv: fv, vc: vc)
+    let dat = DeleteObject(fv: fv, vc: vc)
     save(dat)
   }
   
-  func addLabelChange(#from: String, to: String, fv:FigureView) {
-    var dat = LabelChangeObject(from: from, to: to, fv: fv)
+  func addLabelChange(from from: String, to: String, fv:FigureView) {
+    let dat = LabelChangeObject(from: from, to: to, fv: fv)
     save(dat)
   }
   
@@ -104,36 +104,36 @@ class ActionLogController {
   
   func undo() -> ActionLogObject? {
     if _undoLog.count == 0 { return nil }
-    var log = _undoLog.lastObject as! ActionLogObject
+    let log = _undoLog.lastObject as! ActionLogObject
     _undoLog.removeObject(log)
     _redoLog.addObject(log)
     
     switch log.type {
     case .MOVE:
-      var move = log as! MoveObject
-      var size = move.fv.frame.size
+      let move = log as! MoveObject
+      let size = move.fv.frame.size
       move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
       move.fv.checkOverlaps()
       
     case .MULTI_MOVE:
-      var move = log as! MultiMoveObject
-      var size = move.fv.frame.size
+      let move = log as! MultiMoveObject
+      let size = move.fv.frame.size
       move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
-      var dx = move.to.x - move.from.x
-      var dy = move.to.y - move.from.y
+      let dx = move.to.x - move.from.x
+      let dy = move.to.y - move.from.y
       for fv in move.fvs {
         fv.center = CGPointMake(fv.center.x - dx, fv.center.y - dy)
         fv.checkOverlaps()
       }
       
     case .DELETE:
-      var del = log as! DeleteObject
+      let del = log as! DeleteObject
       del.vc.addFVToList(del.fv)
       del.vc.baseView.addSubview(del.fv)
       // FIXME: DB
       
     case .LABEL_CHANGE:
-      var lbl = log as! LabelChangeObject
+      let lbl = log as! LabelChangeObject
       lbl.fv.setLabel(lbl.from)
     }
 
@@ -142,36 +142,36 @@ class ActionLogController {
   
   func redo() -> ActionLogObject? {
     if _redoLog.count == 0 { return nil }
-    var log = _redoLog.lastObject as! ActionLogObject
+    let log = _redoLog.lastObject as! ActionLogObject
     _redoLog.removeObject(log)
     _undoLog.addObject(log)
     
     switch log.type {
     case .MOVE:
-      var move = log as! MoveObject
-      var size = move.fv.frame.size
+      let move = log as! MoveObject
+      let size = move.fv.frame.size
       move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
       move.fv.checkOverlaps()
       
     case .MULTI_MOVE:
-      var move = log as! MultiMoveObject
-      var size = move.fv.frame.size
+      let move = log as! MultiMoveObject
+      let size = move.fv.frame.size
       move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
-      var dx = move.to.x - move.from.x
-      var dy = move.to.y - move.from.y
+      let dx = move.to.x - move.from.x
+      let dy = move.to.y - move.from.y
       for fv in move.fvs {
         fv.center = CGPointMake(fv.center.x + dx, fv.center.y + dy)
         fv.checkOverlaps()
       }
       
     case .DELETE:
-      var del = log as! DeleteObject
+      let del = log as! DeleteObject
       del.fv.removeFromSuperview()
       del.vc.removeFVFromList(del.fv)
       // FIXME: DB
       
     case .LABEL_CHANGE:
-      var lbl = log as! LabelChangeObject
+      let lbl = log as! LabelChangeObject
       lbl.fv.setLabel(lbl.to)
     }
     

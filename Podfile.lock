@@ -1,0 +1,13 @@
+PODS:
+  - SCLAlertView (0.4)
+  - SwiftColorPicker (0.0.5)
+
+DEPENDENCIES:
+  - SCLAlertView
+  - SwiftColorPicker
+
+SPEC CHECKSUMS:
+  SCLAlertView: 830bdcb850f15fed8ca25bfbf3d6db5f9d890fd4
+  SwiftColorPicker: aee0bb6991feb70f675c6ee5c91a55164ed128d7
+
+COCOAPODS: 0.37.2

@@ -37,7 +37,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   }
   
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     
     _label       = UITextField()
     super.init(coder: aDecoder)
@@ -53,7 +53,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   init(figure: Figure, vc: ViewController) {
     
-    var frame = CGRect(origin: CGPointZero, size: CGSizeMake(30, 30))
+    let frame = CGRect(origin: CGPointZero, size: CGSizeMake(30, 30))
     _label    = UITextField()
     super.init(frame: frame)
     
@@ -66,16 +66,16 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     setFigure(figure)
 //    _startingPoint = frame.origin
     
-    var gr = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleTap:"))
+    let gr = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleTap:"))
     gr.numberOfTapsRequired    = 1
     gr.numberOfTouchesRequired = 1
     addGestureRecognizer(gr)
     
-    var long = UILongPressGestureRecognizer(target: self, action: NSSelectorFromString("handleLongPress:"))
+    let long = UILongPressGestureRecognizer(target: self, action: NSSelectorFromString("handleLongPress:"))
     long.minimumPressDuration = 0.8
     addGestureRecognizer(long)
     
-    var dbl = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleDoubleTap:"))
+    let dbl = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleDoubleTap:"))
     dbl.numberOfTapsRequired    = 2
     dbl.numberOfTouchesRequired = 1
     addGestureRecognizer(dbl)
@@ -93,10 +93,10 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   }
   
   private func setColor(figure: Figure) {
-    var color = figure.color.intValue
-    var red   = CGFloat((color >> 16) & 0xFF)
-    var green = CGFloat((color >>  8) & 0xFF)
-    var blue  = CGFloat( color        & 0xFF)
+    let color = figure.color.intValue
+    let red   = CGFloat((color >> 16) & 0xFF)
+    let green = CGFloat((color >>  8) & 0xFF)
+    let blue  = CGFloat( color        & 0xFF)
     self.backgroundColor = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
   }
   
@@ -185,7 +185,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   private var _lastTouched: CGPoint = CGPointZero
   private var _moved: Bool = false
   
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     //    super.touchesBegan(touches, withEvent: event)
     
     _moved = false
@@ -198,7 +198,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     }
   }
   
-  override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
     //    super.touchesMoved(touches, withEvent: event)
     
     _moved = true
@@ -220,19 +220,19 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   func moveOthers(dx: CGFloat, _ dy: CGFloat) {
     for fv in _vc.figureViews {
       if !fv.selected || fv == self { continue }
-      var center = fv.center
+      let center = fv.center
       fv.center  = CGPointMake(center.x - dx, center.y - dy)
     }
   }
   
-  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
     //    super.touchesCancelled(touches, withEvent: event)
     
     endTouch()
     _parent = nil;
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     //    super.touchesEnded(touches, withEvent: event)
     
     endTouch()
@@ -255,7 +255,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   func checkOverlaps() {
     
-    var oldOverlaps = _overlapFVs
+    let oldOverlaps = _overlapFVs
     for fv in oldOverlaps {
       fv.requestDeleteFV(self)
     }
@@ -354,8 +354,8 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   }
   
   private func checkFontSize(tf: UITextField, _ frame: CGRect) -> Bool {
-    var size1 = tf.frame.size
-    var size2 = frame.size
+    let size1 = tf.frame.size
+    let size2 = frame.size
     return CGSizeEqualToSize(size1, size2) || (size1.width < size2.width && size1.height < size2.height)
   }
   

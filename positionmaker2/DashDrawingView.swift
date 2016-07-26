@@ -16,9 +16,9 @@ class DashDrawingView: UIView {
   
   override func drawRect(rect: CGRect) {
     if _draw {
-      var bezier = UIBezierPath(rect: _drawingRect)
+      let bezier = UIBezierPath(rect: _drawingRect)
       UIColor.blackColor().setStroke()
-      var pattern: [CGFloat] = [5, 5]
+      let pattern: [CGFloat] = [5, 5]
       bezier.setLineDash(pattern, count: 2, phase: 0)
       bezier.stroke()
     }

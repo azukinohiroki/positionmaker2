@@ -61,7 +61,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
 
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.count = 0;
         self.start = UIImageView()
         self.images = Array()
@@ -93,7 +93,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
 
         // setup the items
         for (var i = 0; i < self.count; i++) {
-            var item = UIImageView(image: self.images![i])
+            let item = UIImageView(image: self.images![i])
             item.tag = kItemInitTag + i;
             item.userInteractionEnabled = true;
             self.superview?.addSubview(item)
@@ -119,7 +119,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
         self.collision?.collisionDelegate = self;
         
         for (var i = 0; i < self.count; i++) {
-            var snap = UISnapBehavior(item: self.items![i], snapToPoint: self.center)
+            let snap = UISnapBehavior(item: self.items![i], snapToPoint: self.center)
             snap.damping = CGFloat(kSphereDamping)
             self.snaps?.append(snap)
         }
@@ -215,9 +215,9 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     
     func snapToStartWithIndex(index:Int)
     {
-        var snap = UISnapBehavior(item: self.items![index], snapToPoint: self.center)
+        let snap = UISnapBehavior(item: self.items![index], snapToPoint: self.center)
         snap.damping = CGFloat(kSphereDamping)
-        var snapToRemove = self.snaps![index];
+        let snapToRemove = self.snaps![index];
         self.snaps![index] = snap;
         self.animator?.removeBehavior(snapToRemove)
         self.animator?.addBehavior(snap)
@@ -226,7 +226,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     func snapToPostionsWithIndex(index:Int)
     {
         let positionValue:AnyObject = self.positions![index];
-        let position = positionValue.CGPointValue()
+        let position = positionValue.CGPointValue
         let snap = UISnapBehavior(item: self.items![index], snapToPoint: position)
         snap.damping = CGFloat(kSphereDamping)
         let snapToRemove = self.snaps![index];

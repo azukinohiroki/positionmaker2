@@ -25,7 +25,7 @@ class ParentView : UIView {
   private var _dTapStartP: CGPoint = CGPointZero
   private var _lastTouch: UITouch?
   
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesBegan(touches, withEvent: event)
     
     var touch = touches.first as! UITouch
@@ -45,23 +45,23 @@ class ParentView : UIView {
     _lastTouch = touch
   }
   
-  override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesMoved(touches, withEvent: event)
 
     if _dTapped {
-      var p = (touches.first! as! UITouch).locationInView(dashDrawingView)
-      var r = CGRectMake(_dTapStartP.x, _dTapStartP.y, p.x-_dTapStartP.x, p.y-_dTapStartP.y)
+      let p = (touches.first! ).locationInView(dashDrawingView)
+      let r = CGRectMake(_dTapStartP.x, _dTapStartP.y, p.x-_dTapStartP.x, p.y-_dTapStartP.y)
       dashDrawingView?.setDrawingRect(r)
     }
   }
   
-  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
 //    super.touchesCancelled(touches, withEvent: event)
     
     touchEnd()
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesEnded(touches, withEvent: event)
     
     touchEnd()
@@ -86,13 +86,13 @@ class ParentView : UIView {
       return
     }
     
-    var xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
+    let xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
     var x: CGFloat =  0
-    var y: CGFloat = 20
+    let y: CGFloat = 20
     
     for _ in 0 ..< _numVerticalLines {
       x += xInterval
-      var bezier = UIBezierPath()
+      let bezier = UIBezierPath()
       bezier.moveToPoint(CGPointMake(x, y))
       bezier.addLineToPoint(CGPointMake(x, self.frame.height-y))
       UIColor.grayColor().setStroke()

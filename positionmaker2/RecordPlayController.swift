@@ -39,7 +39,7 @@ class RecordPlayController {
   
   func recordLocation(figureViews: [FigureView]) {
     
-    var obj = RecordPlayObject(figureViews: figureViews)
+    let obj = RecordPlayObject(figureViews: figureViews)
     _record.append(obj)
   }
   
@@ -62,10 +62,10 @@ class RecordPlayController {
     
     UIView.animateWithDuration(1) {
       
-      var first = self._record[0]
+      let first = self._record[0]
       for i in 0 ..< first.fvs.count {
-        var fv = first.fvs[i]
-        var p  = first.ps[i]
+        let fv = first.fvs[i]
+        let p  = first.ps[i]
         fv.center = p
       }
     }
@@ -84,10 +84,10 @@ class RecordPlayController {
         
         UIView.animateWithDuration(1) {
           
-          var first = self._record[index]
+          let first = self._record[index]
           for i in 0 ..< first.fvs.count {
-            var fv = first.fvs[i]
-            var p  = first.ps[i]
+            let fv = first.fvs[i]
+            let p  = first.ps[i]
             fv.center = p
           }
         }
