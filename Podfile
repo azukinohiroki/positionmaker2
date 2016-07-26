@@ -8,6 +8,7 @@ target 'positionmaker2' do
   # Pods for positionmaker2
   pod 'SCLAlertView'
   pod 'SwiftHSVColorPicker'
+  pod 'RealmSwift'
 
   target 'positionmaker2Tests' do
     inherit! :search_paths
