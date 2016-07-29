@@ -140,7 +140,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     return 1
   }
   
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     var strs = [
       "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
     ]
