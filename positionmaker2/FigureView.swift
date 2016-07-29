@@ -295,8 +295,16 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
       }
       _overlapFVs.append(self)
     }
-    
   }
+  
+  
+  func checkOthersOverlap() {
+    for fv in _vc.figureViews {
+      if !fv.selected || self == fv { continue }
+      fv.checkOverlaps()
+    }
+  }
+  
   
   func requestAddFV(fv: FigureView) {
     if _overlapFVs.isEmpty {
@@ -318,13 +326,6 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
         _overlapFVs.removeAll(keepCapacity: true)
         alpha = 1
       }
-    }
-  }
-  
-  func checkOthersOverlap() {
-    for fv in _vc.figureViews {
-      if !fv.selected || self == fv { continue }
-      fv.checkOverlaps()
     }
   }
   
