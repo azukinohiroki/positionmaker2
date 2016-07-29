@@ -25,6 +25,7 @@
 		F5B566AA1B39556B00DBB978 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B566A91B39556B00DBB978 /* ParentView.swift */; };
 		F5C84ECA1B44F38C0051C98B /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84EC91B44F38C0051C98B /* SphereMenu.swift */; };
 		F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */; };
+		F5D09F7D1D4B20A80088286D /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D09F7C1D4B20A80088286D /* PositionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		F5B566A91B39556B00DBB978 /* ParentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
 		F5C84EC91B44F38C0051C98B /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
 		F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayController.swift; sourceTree = "<group>"; };
+		F5D09F7C1D4B20A80088286D /* PositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */,
 				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
 				F57870431B282CEF00FC66D6 /* ViewController.swift */,
+				F5D09F7C1D4B20A80088286D /* PositionController.swift */,
 				F5B566A71B39523F00DBB978 /* DashDrawingView.swift */,
 				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
 				F5B566A91B39556B00DBB978 /* ParentView.swift */,
@@ -390,6 +393,7 @@
 				F57870671B2945EC00FC66D6 /* CoreDataHelper.swift in Sources */,
 				F57870441B282CEF00FC66D6 /* ViewController.swift in Sources */,
 				F5B566A81B39523F00DBB978 /* DashDrawingView.swift in Sources */,
+				F5D09F7D1D4B20A80088286D /* PositionController.swift in Sources */,
 				F5B566AA1B39556B00DBB978 /* ParentView.swift in Sources */,
 				F57870691B295CD000FC66D6 /* FigureView.swift in Sources */,
 				F57870421B282CEF00FC66D6 /* positionmaker2.xcdatamodeld in Sources */,

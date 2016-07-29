@@ -267,6 +267,9 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
       alc.addMove(from: _beganPoint, moved: self, figureViews: _vc.figureViews)
     }
     
+    let p = PositionController.instance().getArrangedPosition(center)
+    center = p
+    
     _moved = false
   }
   
