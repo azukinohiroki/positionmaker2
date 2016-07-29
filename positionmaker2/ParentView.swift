@@ -25,6 +25,7 @@ class ParentView : UIView {
   private var _dTapStartP: CGPoint = CGPointZero
   private var _lastTouch: UITouch?
   
+  
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesBegan(touches, withEvent: event)
     
@@ -45,6 +46,7 @@ class ParentView : UIView {
     _lastTouch = touch
   }
   
+  
   override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesMoved(touches, withEvent: event)
 
@@ -55,17 +57,20 @@ class ParentView : UIView {
     }
   }
   
+  
   override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
 //    super.touchesCancelled(touches, withEvent: event)
     
     touchEnd()
   }
   
+  
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //    super.touchesEnded(touches, withEvent: event)
     
     touchEnd()
   }
+  
   
   private func touchEnd() {
     delegate?.drawRectEnded(_dTapped)
@@ -100,6 +105,7 @@ class ParentView : UIView {
       bezier.stroke()
     }
   }
+  
   
   func setNumberOfVerticalLines(num: Int) {
     
