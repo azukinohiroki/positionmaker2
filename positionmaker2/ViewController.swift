@@ -196,7 +196,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
       
       let scale = baseScrollView.zoomScale
       let offset = baseScrollView.contentOffset
-      var frame = baseView.frame
+//      var frame = baseView.frame
       
       for fv in figureViews {
         let p = CGPointMake(fv.center.x*scale-offset.x, fv.center.y*scale-offset.y)
