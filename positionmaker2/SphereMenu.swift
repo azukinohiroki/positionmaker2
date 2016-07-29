@@ -13,6 +13,13 @@ protocol SphereMenuDelegate{
     func sphereDidSelected(index:Int, menu:SphereMenu)
 }
 
+private extension Selector {
+  static let startTapped = #selector(SphereMenu.startTapped(_:))
+  static let hide        = #selector(SphereMenu.hide)
+  static let tapped      = #selector(SphereMenu.tapped(_:))
+  static let panned      = #selector(SphereMenu.panned(_:))
+}
+
 class SphereMenu:UIView, UICollisionBehaviorDelegate{
     
 
@@ -50,14 +57,14 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
         self.count = self.images!.count;
         self.start = UIImageView(image: startImage, highlightedImage: nil)
         self.start!.userInteractionEnabled = true;
-        self.tapOnStart = UITapGestureRecognizer(target: self, action:"startTapped:")
+        self.tapOnStart = UITapGestureRecognizer(target: self, action: .startTapped)
         self.start!.addGestureRecognizer(self.tapOnStart!)
         self.addSubview(self.start!);
         self.bounds = CGRectMake(0, 0, startImage.size.width, startImage.size.height);
         self.center = startPoint;
         self.expanded = false
         self.tapToDismiss = tapToDismiss
-        self.dismissTap = UITapGestureRecognizer(target: self, action: "hide")
+        self.dismissTap = UITapGestureRecognizer(target: self, action: .hide)
 
     }
     
@@ -102,10 +109,10 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
             item.center = self.center;
             self.positions?.append(NSValue(CGPoint: position))
     
-            let tap = UITapGestureRecognizer(target: self, action:"tapped:")
+            let tap = UITapGestureRecognizer(target: self, action: .tapped)
             item.addGestureRecognizer(tap)
     
-            let pan = UIPanGestureRecognizer(target: self, action: "panned:")
+            let pan = UIPanGestureRecognizer(target: self, action: .panned)
             item.addGestureRecognizer(pan)
             self.items?.append(item)
         }

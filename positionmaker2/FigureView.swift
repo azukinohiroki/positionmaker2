@@ -20,6 +20,14 @@ protocol FigureViewDelegate : class {
 
 
 
+private extension Selector {
+  static let handleTap       = #selector(FigureView.handleTap(_:))
+  static let handleLongPress = #selector(FigureView.handleLongPress(_:))
+  static let handleDoubleTap = #selector(FigureView.handleDoubleTap(_:))
+}
+
+
+
 class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   private var _figure: Figure!
@@ -66,16 +74,16 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     setFigure(figure)
 //    _startingPoint = frame.origin
     
-    let gr = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleTap:"))
+    let gr = UITapGestureRecognizer(target: self, action: .handleTap)
     gr.numberOfTapsRequired    = 1
     gr.numberOfTouchesRequired = 1
     addGestureRecognizer(gr)
     
-    let long = UILongPressGestureRecognizer(target: self, action: NSSelectorFromString("handleLongPress:"))
+    let long = UILongPressGestureRecognizer(target: self, action: .handleLongPress)
     long.minimumPressDuration = 0.8
     addGestureRecognizer(long)
     
-    let dbl = UITapGestureRecognizer(target: self, action: NSSelectorFromString("handleDoubleTap:"))
+    let dbl = UITapGestureRecognizer(target: self, action: .handleDoubleTap)
     dbl.numberOfTapsRequired    = 2
     dbl.numberOfTouchesRequired = 1
     addGestureRecognizer(dbl)
