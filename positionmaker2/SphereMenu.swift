@@ -193,7 +193,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     
     func indexOfItemInArray(dataArray:Array<UIImageView>, item:AnyObject) -> Int{
         var index = -1
-        for (var i = 0; i < dataArray.count; i += 1){
+        for (var i = 0; i < dataArray.count; i += 1) {
             if (dataArray[i] === item){
                 index = i
                 break
@@ -244,7 +244,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
 
     func removeSnapBehaviors()
     {
-        for (var i = 0; i < self.snaps?.count; i += 1){
+        for (var i = 0; i < self.snaps?.count; i += 1) {
             self.animator?.removeBehavior((self.snaps?[i])!)
         }
     }
@@ -253,14 +253,14 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
       //  return;
        self.animator?.addBehavior(self.itemBehavior!)
 
-        if (item1 !== self.bumper){
+        if (item1 !== self.bumper) {
             let index = self.indexOfItemInArray(self.items!, item: item1)
             if (index >= 0) {
                 self.snapToPostionsWithIndex(index)
             }
         }
         
-        if (item2 !== self.bumper){
+        if (item2 !== self.bumper) {
             let index = self.indexOfItemInArray(self.items!, item: item2)
             if (index >= 0) {
                 self.snapToPostionsWithIndex(index)

@@ -94,11 +94,13 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     addSubview(_label)
   }
   
+  
   private func setFigure(figure: Figure) {
     
     _figure = figure
     setColor(figure)
   }
+  
   
   private func setColor(figure: Figure) {
     let color = figure.color.intValue
@@ -109,14 +111,12 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   }
   
   
-  
   func handleTap(sender: UITapGestureRecognizer) {
     if sender.state == .Ended && !_moved {
       selected = !selected
 //      println("tapped+\(selected)")
     }
   }
-  
   
   
   private var _longPressed = false
@@ -170,7 +170,6 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   }
   
   
-  
   private var _lastLabel = ""
   
   func handleDoubleTap(sender: UITapGestureRecognizer) {
@@ -181,6 +180,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
       _lastLabel = _label.text!
     }
   }
+  
   
   func setLabel(text: String) {
     _label.text = text
@@ -206,6 +206,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     }
   }
   
+  
   override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
     //    super.touchesMoved(touches, withEvent: event)
     
@@ -225,6 +226,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     }
   }
   
+  
   func moveOthers(dx: CGFloat, _ dy: CGFloat) {
     for fv in _vc.figureViews {
       if !fv.selected || fv == self { continue }
@@ -233,6 +235,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     }
   }
   
+  
   override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
     //    super.touchesCancelled(touches, withEvent: event)
     
@@ -240,12 +243,14 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     _parent = nil;
   }
   
+  
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     //    super.touchesEnded(touches, withEvent: event)
     
     endTouch()
     _parent = nil;
   }
+  
   
   private var _overlapFVs: [FigureView] = []
   
@@ -260,6 +265,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     
     _moved = false
   }
+  
   
   func checkOverlaps() {
     
@@ -299,6 +305,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
       _overlapFVs.append(fv)
     }
   }
+  
   
   func requestDeleteFV(fv: FigureView) {
     if _overlapFVs.isEmpty {
