@@ -178,22 +178,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   func endTouch(view: FigureView, beganPoint: CGPoint) {
     baseScrollView.canCancelContentTouches = true
-    
-    var fvs = [FigureView]()
-    for fv in figureViews {
-      if fv.selected && fv != view {
-        fvs.append(fv)
-      }
-    }
-    
-    let o = view.frame.origin
-    
-    let alc = ActionLogController.instance()
-    if fvs.isEmpty {
-      alc.addMove(from: beganPoint, to: o, fv: view)
-    } else {
-      alc.addMultiMove(from: beganPoint, to: o, fv: view, fvs: fvs)
-    }
   }
   
   
