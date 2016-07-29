@@ -71,19 +71,23 @@ class ActionLogController {
   private let _undoLog: NSMutableArray = NSMutableArray()
   private let _redoLog: NSMutableArray = NSMutableArray()
   
+  
   static func instance() -> ActionLogController {
     return (UIApplication.sharedApplication().delegate as! AppDelegate).actionLogController
   }
+  
   
   func addMove(from from: CGPoint, to: CGPoint, fv:FigureView) {
     let dat = MoveObject(from: from, to: to, fv: fv)
     save(dat)
   }
   
+  
   func addMultiMove(from from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
     let dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
     save(dat)
   }
+  
   
   func addDelete(fv fv: FigureView, origin: CGPoint, vc: ViewController) {
     let frame = fv.frame
@@ -92,15 +96,18 @@ class ActionLogController {
     save(dat)
   }
   
+  
   func addLabelChange(from from: String, to: String, fv:FigureView) {
     let dat = LabelChangeObject(from: from, to: to, fv: fv)
     save(dat)
   }
   
+  
   private func save(dat: ActionLogObject) {
     _undoLog.addObject(dat)
     _redoLog.removeAllObjects()
   }
+  
   
   func undo() -> ActionLogObject? {
     if _undoLog.count == 0 { return nil }
@@ -139,6 +146,7 @@ class ActionLogController {
 
     return log
   }
+  
   
   func redo() -> ActionLogObject? {
     if _redoLog.count == 0 { return nil }
