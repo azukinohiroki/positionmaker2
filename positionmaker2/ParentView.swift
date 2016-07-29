@@ -84,6 +84,7 @@ class ParentView : UIView {
   private var _draw = false
   private var _numVerticalLines   = 0
   private var _numHorizontalLines = 0
+  var xInterval: CGFloat = 0
   
   
   override func drawRect(rect: CGRect) {
@@ -91,7 +92,6 @@ class ParentView : UIView {
       return
     }
     
-    let xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
     var x: CGFloat =  0
     let y: CGFloat = 20
     
@@ -121,5 +121,8 @@ class ParentView : UIView {
     
     _draw = true
     _numVerticalLines = num;
+    xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
+    
+    PositionController.instance().setNumberOfVerticalLines(_numVerticalLines, interval: xInterval)
   }
 }
