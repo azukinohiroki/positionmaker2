@@ -123,6 +123,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   func handleLongPress(sender: UILongPressGestureRecognizer) {
     if sender.state == .Began {
+      if _moved { return; }
       _longPressed = true
       let alert = SCLAlertView()
       alert.addButton("削除") {
