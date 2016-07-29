@@ -77,13 +77,31 @@ class ActionLogController {
   }
   
   
-  func addMove(from from: CGPoint, to: CGPoint, fv:FigureView) {
+  func addMove(from from: CGPoint, moved: FigureView, figureViews: [FigureView]) {
+    
+    var fvs = [FigureView]()
+    for fv in figureViews {
+      if fv.selected && fv != moved {
+        fvs.append(fv)
+      }
+    }
+    
+    let o   = moved.frame.origin
+    if fvs.isEmpty {
+      addMove(from: from, to: o, fv: moved)
+    } else {
+      addMultiMove(from: from, to: o, fv: moved, fvs: fvs)
+    }
+  }
+  
+  
+  private func addMove(from from: CGPoint, to: CGPoint, fv:FigureView) {
     let dat = MoveObject(from: from, to: to, fv: fv)
     save(dat)
   }
   
   
-  func addMultiMove(from from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
+  private func addMultiMove(from from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
     let dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
     save(dat)
   }

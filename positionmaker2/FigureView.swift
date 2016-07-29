@@ -263,20 +263,8 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     if !_longPressed && _moved {
       delegate?.endTouch(self, beganPoint: _beganPoint)
       
-      var fvs = [FigureView]()
-      for fv in _vc.figureViews {
-        if fv.selected && fv != self {
-          fvs.append(fv)
-        }
-      }
-      
-      let o   = frame.origin
       let alc = ActionLogController.instance()
-      if fvs.isEmpty {
-        alc.addMove(from: _beganPoint, to: o, fv: self)
-      } else {
-        alc.addMultiMove(from: _beganPoint, to: o, fv: self, fvs: fvs)
-      }
+      alc.addMove(from: _beganPoint, moved: self, figureViews: _vc.figureViews)
     }
     
     _moved = false
