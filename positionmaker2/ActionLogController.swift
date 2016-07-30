@@ -79,13 +79,7 @@ class ActionLogController {
   
   func addMove(from from: CGPoint, moved: FigureView, figureViews: [FigureView]) {
     
-    var fvs = [FigureView]()
-    for fv in figureViews {
-      if fv.selected && fv != moved {
-        fvs.append(fv)
-      }
-    }
-    
+    let fvs = Util.selectedFigureViewExcept(moved, figureViews: figureViews)
     let o   = moved.frame.origin
     if fvs.isEmpty {
       addMove(from: from, to: o, fv: moved)

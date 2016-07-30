@@ -26,7 +26,17 @@ class PositionController {
   }
   
   
-  func getArrangedPosition(p: CGPoint) -> CGPoint {
+  func arrangePosition(fv: FigureView, figureViews: [FigureView]) {
+    
+    let fvs = Util.selectedFigureViewExcept(fv, figureViews: figureViews)
+    fv.center = getArrangedPosition(fv.center)
+    for v in fvs {
+      v.center = getArrangedPosition(v.center)
+    }
+  }
+  
+  
+  private func getArrangedPosition(p: CGPoint) -> CGPoint {
     
     if _numVLines == 0 {
       return p

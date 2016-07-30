@@ -257,9 +257,6 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   func endTouch() {
     
-    checkOverlaps()
-    checkOthersOverlap()
-    
     if !_longPressed && _moved {
       delegate?.endTouch(self, beganPoint: _beganPoint)
       
@@ -267,8 +264,11 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
       alc.addMove(from: _beganPoint, moved: self, figureViews: _vc.figureViews)
     }
     
-    let p = PositionController.instance().getArrangedPosition(center)
-    center = p
+//    center = PositionController.instance().getArrangedPosition(center)
+    PositionController.instance().arrangePosition(self, figureViews: _vc.figureViews)
+    
+    checkOverlaps()
+    checkOthersOverlap()
     
     _moved = false
   }

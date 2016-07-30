@@ -26,6 +26,7 @@
 		F5C84ECA1B44F38C0051C98B /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84EC91B44F38C0051C98B /* SphereMenu.swift */; };
 		F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */; };
 		F5D09F7D1D4B20A80088286D /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D09F7C1D4B20A80088286D /* PositionController.swift */; };
+		F5D09F7F1D4BB4830088286D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D09F7E1D4BB4830088286D /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		F5C84EC91B44F38C0051C98B /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
 		F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayController.swift; sourceTree = "<group>"; };
 		F5D09F7C1D4B20A80088286D /* PositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionController.swift; sourceTree = "<group>"; };
+		F5D09F7E1D4BB4830088286D /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				F57870681B295CD000FC66D6 /* FigureView.swift */,
 				F57870641B283BB900FC66D6 /* Figure.swift */,
 				F5C84EC91B44F38C0051C98B /* SphereMenu.swift */,
+				F5D09F7E1D4BB4830088286D /* Util.swift */,
 				F57870451B282CEF00FC66D6 /* Main.storyboard */,
 				F57870481B282CEF00FC66D6 /* Images.xcassets */,
 				F578704A1B282CEF00FC66D6 /* LaunchScreen.xib */,
@@ -399,6 +402,7 @@
 				F57870421B282CEF00FC66D6 /* positionmaker2.xcdatamodeld in Sources */,
 				F578703F1B282CEF00FC66D6 /* AppDelegate.swift in Sources */,
 				F57870651B283BB900FC66D6 /* Figure.swift in Sources */,
+				F5D09F7F1D4BB4830088286D /* Util.swift in Sources */,
 				F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */,
 				F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */,
 			);
