@@ -34,7 +34,7 @@ class RecordPlayController {
   
   func startRecording(figureViews: [FigureView]) {
     _record.removeAll(keepCapacity: true)
-    _record.append(RecordPlayObject(figureViews: figureViews))
+    recordLocation(figureViews)
     _recording = true
   }
   
