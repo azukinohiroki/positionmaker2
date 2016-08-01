@@ -31,17 +31,20 @@ class RecordPlayController {
   private var _recording = false
   private var _record: [RecordPlayObject] = []
   
+  
   func startRecording(figureViews: [FigureView]) {
     _record.removeAll(keepCapacity: true)
     _record.append(RecordPlayObject(figureViews: figureViews))
     _recording = true
   }
   
+  
   func recordLocation(figureViews: [FigureView]) {
     
     let obj = RecordPlayObject(figureViews: figureViews)
     _record.append(obj)
   }
+  
   
   func clearRecord() {
     _record = []
@@ -50,6 +53,7 @@ class RecordPlayController {
   
   private var _playing = false
   private var _sleepInternval: UInt32 = 1
+  
   
   func startPlaying(figureViews: [FigureView]) {
     
@@ -75,6 +79,7 @@ class RecordPlayController {
       self.startPlayInner()
     }
   }
+  
   
   private func startPlayInner() {
     
