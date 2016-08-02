@@ -1,4 +1,15 @@
 PODS:
+  - DATAFilter (0.10.0):
+    - DATAObjectIDs (~> 0.5.1)
+  - DATAObjectIDs (0.5.1)
+  - DATAStack (5.2.1)
+  - NSDictionary-ANDYSafeValue (0.3.1)
+  - NSEntityDescription-SYNCPrimaryKey (1.2.3):
+    - NSString-HYPNetworking (~> 1.0.2)
+  - NSManagedObject-HYPPropertyMapper (3.6.9):
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.2.3)
+    - NSString-HYPNetworking (~> 1.0.2)
+  - NSString-HYPNetworking (1.0.2)
   - Realm (1.0.2):
     - Realm/Headers (= 1.0.2)
   - Realm/Headers (1.0.2)
@@ -6,18 +17,33 @@ PODS:
     - Realm (= 1.0.2)
   - SCLAlertView (0.5.9)
   - SwiftHSVColorPicker (1.0.9)
+  - Sync (1.9.0):
+    - DATAFilter (~> 0.10.0)
+    - DATAStack (~> 5.2.1)
+    - NSDictionary-ANDYSafeValue (~> 0.3.1)
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.2.3)
+    - NSManagedObject-HYPPropertyMapper (~> 3.6.9)
 
 DEPENDENCIES:
   - RealmSwift
   - SCLAlertView
   - SwiftHSVColorPicker
+  - Sync
 
 SPEC CHECKSUMS:
+  DATAFilter: b6662b05dd0dcf658d526aa0f9095bb202d7b10e
+  DATAObjectIDs: 33db74dd1c858c2d22a45a4013c95f1082182e4e
+  DATAStack: c6432c89d0bd2b1d2a17c947ca8a2c81f389f06d
+  NSDictionary-ANDYSafeValue: 2d7adf339b6e302d71fec5f1d71ae00aacda993e
+  NSEntityDescription-SYNCPrimaryKey: 9dbb89d7cbc1bea196dd935725bfcf3c0ff4249c
+  NSManagedObject-HYPPropertyMapper: 1a34418531715f01520eb32abcd2c183952ea630
+  NSString-HYPNetworking: 7c18e44ca9529d2f74a30a1c2a7a787da76198c1
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
   RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
   SCLAlertView: d7c6a48c7d340e60206d4ed0e8ebcbff3b9d2a44
   SwiftHSVColorPicker: 0b06e8c598cd5a59ac5a5c0fc8417908703846b2
+  Sync: f39edb4e3b931fdc387e836200c235a54750e072
 
-PODFILE CHECKSUM: 33db4bdcd21eaf327d4a71a214df16abc2958c80
+PODFILE CHECKSUM: 16ee7344add05168d86ef3264920b337f88a0cff
 
 COCOAPODS: 1.0.1
