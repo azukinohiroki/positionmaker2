@@ -146,6 +146,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     ]
     
     return strs[row % 10]
+//    return String.init(format: "%d", row)
   }
   
   func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -157,6 +158,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     let base10 = (max/2) - (max/2) % 10
     pickerView.selectRow(pickerView.selectedRowInComponent(0)%10+base10, inComponent: 0, animated: false)
     baseView.setNumberOfVerticalLines(pickerView.selectedRowInComponent(0)%10)
+    baseView.setNumberOfHorizontalLines(pickerView.selectedRowInComponent(0)%10)
   }
   
   

@@ -85,6 +85,7 @@ class ParentView : UIView {
   private var _numVerticalLines   = 0
   private var _numHorizontalLines = 0
   var xInterval: CGFloat = 0
+  var yInterval: CGFloat = 0
   
   
   override func drawRect(rect: CGRect) {
@@ -93,13 +94,25 @@ class ParentView : UIView {
     }
     
     var x: CGFloat =  0
-    let y: CGFloat = 20
+    var y: CGFloat = 20
     
     for _ in 0 ..< _numVerticalLines {
       x += xInterval
       let bezier = UIBezierPath()
       bezier.moveToPoint(CGPointMake(x, y))
       bezier.addLineToPoint(CGPointMake(x, self.frame.height-y))
+      UIColor.grayColor().setStroke()
+      bezier.lineWidth = 2
+      bezier.stroke()
+    }
+    
+    x = 20
+    y = 0
+    for _ in 0 ..< _numHorizontalLines {
+      y += yInterval
+      let bezier = UIBezierPath()
+      bezier.moveToPoint(CGPointMake(x, y))
+      bezier.addLineToPoint(CGPointMake(self.frame.width-x, y))
       UIColor.grayColor().setStroke()
       bezier.lineWidth = 2
       bezier.stroke()
@@ -120,9 +133,29 @@ class ParentView : UIView {
     }
     
     _draw = true
-    _numVerticalLines = num;
+    _numVerticalLines = num
     xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
     
     PositionController.instance().setNumberOfVerticalLines(_numVerticalLines, interval: xInterval)
+  }
+  
+  
+  func setNumberOfHorizontalLines(num: Int) {
+    
+    setNeedsLayout()
+    
+    if num <= 0 {
+      _numHorizontalLines = 0
+      if _numVerticalLines == 0 {
+        _draw = false
+      }
+      return
+    }
+    
+    _draw = true
+    _numHorizontalLines = num
+    yInterval = self.frame.height / CGFloat(_numHorizontalLines + 1)
+    
+    PositionController.instance().setNumberOfHorizontalLines(_numHorizontalLines, interval: yInterval)
   }
 }

@@ -17,12 +17,18 @@ class PositionController {
   }
   
   
-  private var _numVLines = 0
-  private var _vInterval = CGFloat(0)
+  private var _numVLines = 0, _numHLines = 0
+  private var _vInterval = CGFloat(0), _hInterval = CGFloat(0)
   
   func setNumberOfVerticalLines(num: Int, interval: CGFloat) {
     _numVLines = num
     _vInterval = interval
+  }
+  
+  
+  func setNumberOfHorizontalLines(num: Int, interval: CGFloat) {
+    _numHLines = num
+    _hInterval = interval
   }
   
   
@@ -38,7 +44,7 @@ class PositionController {
   
   private func getArrangedPosition(p: CGPoint) -> CGPoint {
     
-    if _numVLines == 0 {
+    if _numVLines == 0 && _numHLines == 0 {
       return p
     }
     
@@ -55,8 +61,17 @@ class PositionController {
     
     ret.x = p.x + diffx
     
+    var diffy: CGFloat = CGFloat.max
     
-    ret.y = p.y
+    for i in 1 ... _numHLines {
+      let y: CGFloat = _hInterval * CGFloat(i)
+      if abs(diffy) < abs(y - p.y) {
+        break
+      }
+      diffy = y - p.y
+    }
+    
+    ret.y = p.y + diffy
     
     return ret;
   }
