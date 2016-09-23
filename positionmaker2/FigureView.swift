@@ -34,13 +34,24 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   private var _parent: UIView?
   private var _vc: ViewController!
   
+  private var _r: CGFloat = 1.0, _g: CGFloat = 1.0, _b: CGFloat = 1.0, _a: CGFloat = 1.0
+  
   private let _label: UITextField!
   
   weak var delegate: FigureViewDelegate? = nil
   
   var selected: Bool = false {
     didSet {
-      self.selected ? self.backgroundColor = UIColor.lightGrayColor() : setColor(_figure)
+//      self.selected ? self.backgroundColor = UIColor.lightGrayColor() : setColor(_figure)
+      if self.selected {
+        _r = 0.7
+        _g = 0.7
+        _b = 0.7
+        setNeedsDisplay()
+        
+      } else {
+        setColor(_figure)
+      }
     }
   }
   
@@ -92,6 +103,8 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     _label.userInteractionEnabled    = false
     _label.delegate = self
     addSubview(_label)
+    
+    self.backgroundColor = UIColor.clearColor()
   }
   
   
@@ -104,12 +117,26 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   private func setColor(figure: Figure) {
     let color = figure.color.intValue
-    let red   = CGFloat((color >> 16) & 0xFF)
-    let green = CGFloat((color >>  8) & 0xFF)
-    let blue  = CGFloat( color        & 0xFF)
-    self.backgroundColor = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
+    _r = CGFloat((color >> 16) & 0xFF) / 255.0
+    _g = CGFloat((color >>  8) & 0xFF) / 255.0
+    _b = CGFloat( color        & 0xFF) / 255.0
+    setNeedsDisplay()
   }
   
+  
+  override func drawRect(rect: CGRect) {
+    let ctx: CGContextRef = UIGraphicsGetCurrentContext()!
+    CGContextSetRGBFillColor(ctx, 0.5, 0.5, 0.5, 1.0)
+    CGContextSetRGBStrokeColor(ctx, _r, _g, _b, _a)
+    CGContextStrokeEllipseInRect(ctx, CGRectMake(0, 0, frame.size.width*0.9, frame.size.height*0.9))
+    CGContextFillEllipseInRect(ctx,   CGRectMake(0, 0, frame.size.width*0.9, frame.size.height*0.9))
+    CGContextSetRGBFillColor(ctx,   _r, _g, _b, _a)
+    CGContextFillEllipseInRect(ctx,   CGRectMake(0, 0, frame.size.width*0.9, frame.size.height*0.8))
+  }
+  
+  
+  
+  // MARK: UI event delegate
   
   func handleTap(sender: UITapGestureRecognizer) {
     if sender.state == .Ended && !_moved {
@@ -187,7 +214,6 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     _label.text = text
     fitFontSize(_label)
   }
-  
   
   
   private var _beganPoint: CGPoint = CGPointZero
