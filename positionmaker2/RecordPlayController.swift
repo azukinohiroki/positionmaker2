@@ -24,7 +24,7 @@ class RecordPlayObject {
 class RecordPlayController {
   
   static func instance() -> RecordPlayController {
-    return (UIApplication.sharedApplication().delegate as! AppDelegate).recordPlayController
+    return (UIApplication.shared.delegate as! AppDelegate).recordPlayController
   }
   
 
@@ -32,14 +32,14 @@ class RecordPlayController {
   private var _record: [RecordPlayObject] = []
   
   
-  func startRecording(figureViews: [FigureView]) {
-    _record.removeAll(keepCapacity: true)
+  func startRecording(_ figureViews: [FigureView]) {
+    _record.removeAll(keepingCapacity: true)
     recordLocation(figureViews)
     _recording = true
   }
   
   
-  func recordLocation(figureViews: [FigureView]) {
+  func recordLocation(_ figureViews: [FigureView]) {
     
     let obj = RecordPlayObject(figureViews: figureViews)
     _record.append(obj)
@@ -64,7 +64,7 @@ class RecordPlayController {
     _recording = false
     _playing   = true
     
-    UIView.animateWithDuration(1) {
+    UIView.animate(withDuration: 1) {
       
       let first = self._record[0]
       for i in 0 ..< first.fvs.count {
@@ -74,7 +74,7 @@ class RecordPlayController {
       }
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+    DispatchQueue.global(qos: .userInitiated).async {
       sleep(1)
       self.startPlayInner()
     }
@@ -85,9 +85,9 @@ class RecordPlayController {
     
     for index in 1 ..< _record.count {
       
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         
-        UIView.animateWithDuration(1) {
+        UIView.animate(withDuration: 1) {
           
           let first = self._record[index]
           for i in 0 ..< first.fvs.count {

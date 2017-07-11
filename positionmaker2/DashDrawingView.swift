@@ -11,13 +11,13 @@ import UIKit
 
 class DashDrawingView: UIView {
   
-  private var _drawingRect = CGRectZero
+  private var _drawingRect = CGRect.zero
   private var _draw = false
   
-  override func drawRect(rect: CGRect) {
+  override func draw(_ rect: CGRect) {
     if _draw {
       let bezier = UIBezierPath(rect: _drawingRect)
-      UIColor.blackColor().setStroke()
+      UIColor.black.setStroke()
       let pattern: [CGFloat] = [5, 5]
       bezier.setLineDash(pattern, count: 2, phase: 0)
       bezier.stroke()
@@ -32,7 +32,7 @@ class DashDrawingView: UIView {
   
   func clear() {
     _draw = false
-    _drawingRect = CGRectZero
+    _drawingRect = CGRect.zero
     setNeedsDisplay()
   }
   

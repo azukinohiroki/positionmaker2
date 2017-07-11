@@ -11,7 +11,7 @@ import Foundation
 class Util {
   
   
-  static func selectedFigureViewExcept(figureView: FigureView, figureViews: [FigureView]) -> [FigureView] {
+  static func selectedFigureViewExcept(_ figureView: FigureView, figureViews: [FigureView]) -> [FigureView] {
     
     var fvs = [FigureView]()
     for fv in figureViews {

@@ -12,8 +12,8 @@ import MultipeerConnectivity
 class MultipeerController {
   
   func initialize() {
-    var peerID  = MCPeerID(displayName: UIDevice.currentDevice().name)
-    var session = MCSession(peer: peerID)
+    let peerID  = MCPeerID(displayName: UIDevice.current.name)
+    let session = MCSession(peer: peerID)
 //    session.delegate = self
   }
 }

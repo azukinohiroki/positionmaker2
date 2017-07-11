@@ -25,11 +25,11 @@ class Figure: NSManagedObject {
 
   static func defaultFigure() -> Figure {
     
-    let appDelegate          = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate          = UIApplication.shared.delegate as! AppDelegate
     let managedObjectContext = appDelegate.coreDataHelper.managedObjectContext!
-    let entity = NSEntityDescription.entityForName("Figure", inManagedObjectContext: managedObjectContext)!
+    let entity = NSEntityDescription.entity(forEntityName: "Figure", in: managedObjectContext)!
     
-    let f = Figure(entity: entity, insertIntoManagedObjectContext: managedObjectContext)
+    let f = Figure(entity: entity, insertInto: managedObjectContext)
     f.color = Blue
     f.name  = ""
     

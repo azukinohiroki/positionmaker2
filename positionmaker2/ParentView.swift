@@ -16,26 +16,26 @@ protocol ParentViewDelegate : class {
 
 class ParentView : UIView {
   
-  private var _drawingRect = CGRectZero
+  private var _drawingRect = CGRect.zero
   
   weak var dashDrawingView: DashDrawingView?
   weak var delegate: ParentViewDelegate?
 
   private var _dTapped = false
-  private var _dTapStartP: CGPoint = CGPointZero
+  private var _dTapStartP: CGPoint = CGPoint.zero
   private var _lastTouch: UITouch?
   
   
-  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    super.touchesBegan(touches, withEvent: event)
     
     let touch = touches.first as UITouch!
-    let p = touch.locationInView(dashDrawingView)
+    let p = touch!.location(in: dashDrawingView)
     
     _dTapped = false
     
     if let lastTouch = _lastTouch {
-      let diff = touch.timestamp - lastTouch.timestamp
+      let diff = touch!.timestamp - lastTouch.timestamp
       _dTapped = diff < 0.5
       if _dTapped {
         _dTapStartP = p
@@ -47,25 +47,25 @@ class ParentView : UIView {
   }
   
   
-  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    super.touchesMoved(touches, withEvent: event)
 
     if _dTapped {
-      let p = (touches.first! ).locationInView(dashDrawingView)
-      let r = CGRectMake(_dTapStartP.x, _dTapStartP.y, p.x-_dTapStartP.x, p.y-_dTapStartP.y)
-      dashDrawingView?.setDrawingRect(r)
+      let p = (touches.first! ).location(in: dashDrawingView)
+      let r = CGRect(x: _dTapStartP.x, y: _dTapStartP.y, width: p.x-_dTapStartP.x, height: p.y-_dTapStartP.y)
+      dashDrawingView?.setDrawingRect(rect: r)
     }
   }
   
   
-  override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+  override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
 //    super.touchesCancelled(touches, withEvent: event)
     
     touchEnd()
   }
   
   
-  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    super.touchesEnded(touches, withEvent: event)
     
     touchEnd()
@@ -73,7 +73,7 @@ class ParentView : UIView {
   
   
   private func touchEnd() {
-    delegate?.drawRectEnded(_dTapped)
+    delegate?.drawRectEnded(doubleTapped: _dTapped)
     if _dTapped {
       _dTapped = false
       dashDrawingView?.clear()
@@ -81,17 +81,13 @@ class ParentView : UIView {
     }
   }
   
-  private var _draw = false
   private var _numVerticalLines   = 0
   private var _numHorizontalLines = 0
   var xInterval: CGFloat = 0
   var yInterval: CGFloat = 0
   
   
-  override func drawRect(rect: CGRect) {
-    if !_draw {
-      return
-    }
+  override func draw(_ rect: CGRect) {
     
     var x: CGFloat =  0
     var y: CGFloat = 20
@@ -99,9 +95,9 @@ class ParentView : UIView {
     for _ in 0 ..< _numVerticalLines {
       x += xInterval
       let bezier = UIBezierPath()
-      bezier.moveToPoint(CGPointMake(x, y))
-      bezier.addLineToPoint(CGPointMake(x, self.frame.height-y))
-      UIColor.grayColor().setStroke()
+      bezier.move(to: CGPoint(x: x, y: y))
+      bezier.addLine(to: CGPoint(x: x, y: self.frame.height-y))
+      UIColor.gray.setStroke()
       bezier.lineWidth = 2
       bezier.stroke()
     }
@@ -111,9 +107,9 @@ class ParentView : UIView {
     for _ in 0 ..< _numHorizontalLines {
       y += yInterval
       let bezier = UIBezierPath()
-      bezier.moveToPoint(CGPointMake(x, y))
-      bezier.addLineToPoint(CGPointMake(self.frame.width-x, y))
-      UIColor.grayColor().setStroke()
+      bezier.move(to: CGPoint(x: x, y: y))
+      bezier.addLine(to: CGPoint(x: self.frame.width-x, y: y))
+      UIColor.gray.setStroke()
       bezier.lineWidth = 2
       bezier.stroke()
     }
@@ -124,17 +120,11 @@ class ParentView : UIView {
     
     setNeedsDisplay()
     
-    if num <= 0 {
-      _numVerticalLines = 0
-      if _numHorizontalLines == 0 {
-        _draw = false
-      }
-      return
-    }
-    
-    _draw = true
     _numVerticalLines = num
-    xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
+    
+    if num > 0 {
+      xInterval = self.frame.width / CGFloat(_numVerticalLines + 1)
+    }
     
     PositionController.instance().setNumberOfVerticalLines(_numVerticalLines, interval: xInterval)
   }
@@ -142,19 +132,13 @@ class ParentView : UIView {
   
   func setNumberOfHorizontalLines(num: Int) {
     
-    setNeedsLayout()
+    setNeedsDisplay()
     
-    if num <= 0 {
-      _numHorizontalLines = 0
-      if _numVerticalLines == 0 {
-        _draw = false
-      }
-      return
-    }
-    
-    _draw = true
     _numHorizontalLines = num
-    yInterval = self.frame.height / CGFloat(_numHorizontalLines + 1)
+    
+    if num > 0 {
+      yInterval = self.frame.height / CGFloat(_numHorizontalLines + 1)
+    }
     
     PositionController.instance().setNumberOfHorizontalLines(_numHorizontalLines, interval: yInterval)
   }

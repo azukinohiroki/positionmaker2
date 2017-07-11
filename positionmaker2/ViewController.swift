@@ -28,7 +28,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     baseView.delegate = self
     baseView.dashDrawingView = dashDrawingView
     
-    dashDrawingView.userInteractionEnabled = false
+    dashDrawingView.isUserInteractionEnabled = false
     
     let recordPlayController = RecordPlayController.instance()
     
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
 
     for j in 0..<10 {
       for i in 0..<15 {
-        let frame   = CGRectMake(CGFloat(i * 50), CGFloat(j*50 + 100), 30.0, 30.0)
+        let frame   = CGRect(x: CGFloat(i * 50), y: CGFloat(j*50 + 100), width: 30.0, height: 30.0)
         let fv      = FigureView(figure: figure, vc: self, frame: frame)
         fv.delegate = self
         
@@ -53,55 +53,61 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     // Dispose of any resources that can be recreated.
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     self.debugLabel.text = NSString(format: "w:%d h:%d", Int(self.view.frame.width), Int(self.view.frame.height)) as String
   }
   
-  @IBAction func recTapped(sender: UIButton) {
+  @IBAction func recTapped(_ sender: UIButton) {
 
     RecordPlayController.instance().recordLocation(figureViews)
   }
   
-  @IBAction func playTapped(sender: UIButton) {
+  @IBAction func playTapped(_ sender: UIButton) {
 
-    RecordPlayController.instance().startPlaying(figureViews)
+    RecordPlayController.instance().startPlaying(figureViews: figureViews)
   }
   
-  @IBAction func undoTapped(sender: UIButton) {
-    ActionLogController.instance().undo()
+  @IBAction func undoTapped(_ sender: UIButton) {
+    _ = ActionLogController.instance().undo()
   }
   
-  @IBAction func redoTapped(sender: UIButton) {
-    ActionLogController.instance().redo()
+  @IBAction func redoTapped(_ sender: UIButton) {
+    _ = ActionLogController.instance().redo()
   }
   
   private var pickerView: UIPickerView!
   
-  @IBAction func linesTapped(sender: UIButton) {
+  /*@IBAction func linesTapped(_ sender: UIButton) {
     let size:CGFloat = 200
-    pickerView = UIPickerView(frame: CGRectMake(0, self.view.frame.height-size, self.view.frame.width, size))
-    pickerView.backgroundColor = UIColor.whiteColor()
+    pickerView = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.height-size, width: self.view.frame.width, height: size))
+    pickerView.backgroundColor = UIColor.white
     pickerView.delegate = self
     self.view.addSubview(pickerView)
+  }*/
+  
+  @IBAction func horizontalLineNumChanged(_ sender: UIStepper) {
+    baseView.setNumberOfHorizontalLines(num: Int(sender.value))
   }
   
+  @IBAction func verticalLineNumChanged(_ sender: UIStepper) {
+    baseView.setNumberOfVerticalLines(num: Int(sender.value))
+  }
   
-  
-  func removeFVFromList(fv: FigureView) {
+  func removeFVFromList(_ fv: FigureView) {
     figureViews = figureViews.filter() { $0 != fv }
   }
   
-  func addFVToList(fv: FigureView) {
+  func addFVToList(_ fv: FigureView) {
     figureViews.append(fv)
   }
   
   
   
-  override func shouldAutorotate() -> Bool {
-    return true
-  }
+//  override func shouldAutorotate() -> Bool {
+//    return true
+//  }
   
   
   // MARK: touch events
@@ -129,7 +135,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   */
   
   
-  
+  /*
   // MARK: UIPickerViewDelegate
   
   func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -140,7 +146,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     return 1
   }
   
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     var strs = [
       "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
     ]
@@ -149,18 +155,18 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
 //    return String.init(format: "%d", row)
   }
   
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     pickerViewLoaded(pickerView, blah: nil)
   }
   
-  func pickerViewLoaded(pickerView: UIPickerView, blah: AnyObject?) {
+  func pickerViewLoaded(_ pickerView: UIPickerView, blah: AnyObject?) {
     let max = 16384
     let base10 = (max/2) - (max/2) % 10
-    pickerView.selectRow(pickerView.selectedRowInComponent(0)%10+base10, inComponent: 0, animated: false)
-    baseView.setNumberOfVerticalLines(pickerView.selectedRowInComponent(0)%10)
-    baseView.setNumberOfHorizontalLines(pickerView.selectedRowInComponent(0)%10)
+    pickerView.selectRow(pickerView.selectedRow(inComponent: 0) % 10 + base10, inComponent: 0, animated: false)
+    baseView.setNumberOfVerticalLines(num: pickerView.selectedRow(inComponent: 0)%10)
+    baseView.setNumberOfHorizontalLines(num: pickerView.selectedRow(inComponent: 0)%10)
   }
-  
+  */
   
   
   // MARK: UIScrollViewDelegate
@@ -173,12 +179,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   // MARK: FigureViewDelegate
   
-  func startTouch(view: FigureView, touch: UITouch) -> UIView? {
+  func startTouch(_ view: FigureView, touch: UITouch) -> UIView? {
     baseScrollView.canCancelContentTouches = false
     return baseView
   }
   
-  func endTouch(view: FigureView, beganPoint: CGPoint) {
+  func endTouch(_ view: FigureView, beganPoint: CGPoint) {
     baseScrollView.canCancelContentTouches = true
   }
   
@@ -201,8 +207,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
 //      var frame = baseView.frame
       
       for fv in figureViews {
-        let p = CGPointMake(fv.center.x*scale-offset.x, fv.center.y*scale-offset.y)
-        fv.selected = CGRectContainsPoint(rect, p)
+        let p = CGPoint(x: fv.center.x*scale-offset.x, y: fv.center.y*scale-offset.y)
+        fv.selected = rect.contains(p)
       }
       
     } else {

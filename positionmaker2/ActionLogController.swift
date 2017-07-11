@@ -73,11 +73,11 @@ class ActionLogController {
   
   
   static func instance() -> ActionLogController {
-    return (UIApplication.sharedApplication().delegate as! AppDelegate).actionLogController
+    return (UIApplication.shared.delegate as! AppDelegate).actionLogController
   }
   
   
-  func addMove(from from: CGPoint, moved: FigureView, figureViews: [FigureView]) {
+  func addMove(from: CGPoint, moved: FigureView, figureViews: [FigureView]) {
     
     let fvs = Util.selectedFigureViewExcept(moved, figureViews: figureViews)
     let o   = moved.frame.origin
@@ -89,34 +89,34 @@ class ActionLogController {
   }
   
   
-  private func addMove(from from: CGPoint, to: CGPoint, fv:FigureView) {
+  private func addMove(from: CGPoint, to: CGPoint, fv:FigureView) {
     let dat = MoveObject(from: from, to: to, fv: fv)
-    save(dat)
+    save(dat: dat)
   }
   
   
-  private func addMultiMove(from from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
+  private func addMultiMove(from: CGPoint, to: CGPoint, fv: FigureView, fvs: [FigureView]) {
     let dat = MultiMoveObject(from: from, to: to, fv: fv, fvs: fvs)
-    save(dat)
+    save(dat: dat)
   }
   
   
-  func addDelete(fv fv: FigureView, origin: CGPoint, vc: ViewController) {
+  func addDelete(fv: FigureView, origin: CGPoint, vc: ViewController) {
     let frame = fv.frame
-    fv.frame = CGRectMake(origin.x, origin.y, CGRectGetWidth(frame), CGRectGetHeight(frame))
+    fv.frame = CGRect(x: origin.x, y: origin.y, width: frame.width, height: frame.height)
     let dat = DeleteObject(fv: fv, vc: vc)
-    save(dat)
+    save(dat: dat)
   }
   
   
-  func addLabelChange(from from: String, to: String, fv:FigureView) {
+  func addLabelChange(from: String, to: String, fv:FigureView) {
     let dat = LabelChangeObject(from: from, to: to, fv: fv)
-    save(dat)
+    save(dat: dat)
   }
   
   
   private func save(dat: ActionLogObject) {
-    _undoLog.addObject(dat)
+    _undoLog.add(dat)
     _redoLog.removeAllObjects()
   }
   
@@ -124,24 +124,24 @@ class ActionLogController {
   func undo() -> ActionLogObject? {
     if _undoLog.count == 0 { return nil }
     let log = _undoLog.lastObject as! ActionLogObject
-    _undoLog.removeObject(log)
-    _redoLog.addObject(log)
+    _undoLog.remove(log)
+    _redoLog.add(log)
     
     switch log.type {
     case .MOVE:
       let move = log as! MoveObject
       let size = move.fv.frame.size
-      move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
+      move.fv.frame = CGRect(x: move.from.x, y: move.from.y, width: size.width, height: size.height)
       move.fv.checkOverlaps()
       
     case .MULTI_MOVE:
       let move = log as! MultiMoveObject
       let size = move.fv.frame.size
-      move.fv.frame = CGRectMake(move.from.x, move.from.y, size.width, size.height)
+      move.fv.frame = CGRect(x: move.from.x, y: move.from.y, width: size.width, height: size.height)
       let dx = move.to.x - move.from.x
       let dy = move.to.y - move.from.y
       for fv in move.fvs {
-        fv.center = CGPointMake(fv.center.x - dx, fv.center.y - dy)
+        fv.center = CGPoint(x: fv.center.x - dx, y: fv.center.y - dy)
         fv.checkOverlaps()
       }
       
@@ -163,24 +163,24 @@ class ActionLogController {
   func redo() -> ActionLogObject? {
     if _redoLog.count == 0 { return nil }
     let log = _redoLog.lastObject as! ActionLogObject
-    _redoLog.removeObject(log)
-    _undoLog.addObject(log)
+    _redoLog.remove(log)
+    _undoLog.add(log)
     
     switch log.type {
     case .MOVE:
       let move = log as! MoveObject
       let size = move.fv.frame.size
-      move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
+      move.fv.frame = CGRect(x: move.to.x, y: move.to.y, width: size.width, height: size.height)
       move.fv.checkOverlaps()
       
     case .MULTI_MOVE:
       let move = log as! MultiMoveObject
       let size = move.fv.frame.size
-      move.fv.frame = CGRectMake(move.to.x, move.to.y, size.width, size.height)
+      move.fv.frame = CGRect(x: move.to.x, y: move.to.y, width: size.width, height: size.height)
       let dx = move.to.x - move.from.x
       let dy = move.to.y - move.from.y
       for fv in move.fvs {
-        fv.center = CGPointMake(fv.center.x + dx, fv.center.y + dy)
+        fv.center = CGPoint(x: fv.center.x + dx, y: fv.center.y + dy)
         fv.checkOverlaps()
       }
       
