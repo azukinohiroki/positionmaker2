@@ -37,11 +37,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     for j in 0..<10 {
       for i in 0..<15 {
         let frame   = CGRect(x: CGFloat(i * 50), y: CGFloat(j*50 + 100), width: 30.0, height: 30.0)
-        let fv      = FigureView(figure: figure, vc: self, frame: frame)
-        fv.delegate = self
-        
-        baseView.addSubview(fv)
-        figureViews.append(fv)
+        addFigureView(figure: figure, frame: frame)
       }
     }
     
@@ -57,6 +53,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     super.viewDidAppear(animated)
     
     self.debugLabel.text = NSString(format: "w:%d h:%d", Int(self.view.frame.width), Int(self.view.frame.height)) as String
+  }
+  
+  public func addFigureView(figure: Figure, frame: CGRect) {
+    
+    let fv      = FigureView(figure: figure, vc: self, frame: frame)
+    fv.delegate = self
+    
+    baseView.addSubview(fv)
+    figureViews.append(fv)
   }
   
   @IBAction func recTapped(_ sender: UIButton) {
@@ -103,6 +108,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     figureViews.append(fv)
   }
   
+  @IBAction func addTapped(_ sender: UIButton) {
+    let rect = CGRect(x: self.view.frame.size.width/2-15, y: self.view.frame.size.height/2-15, width: 30, height: 30)
+    addFigureView(figure: Figure.defaultFigure(), frame: rect)
+  }
   
   
 //  override func shouldAutorotate() -> Bool {

@@ -259,6 +259,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
       if !fv.selected || fv == self { continue }
       let center = fv.center
       fv.center  = CGPoint(x: center.x - dx, y: center.y - dy)
+      RecordPlayController.instance().figureMoved(figureView: fv)
     }
   }
   
@@ -297,6 +298,8 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     checkOthersOverlap()
     
     _moved = false
+    
+    RecordPlayController.instance().figureMoved(figureView: self)
   }
   
   

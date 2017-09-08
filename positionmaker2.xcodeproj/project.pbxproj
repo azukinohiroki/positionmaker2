@@ -49,13 +49,13 @@
 		E0BC795F82BDEC8664AFA878 /* Pods_positionmaker2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_positionmaker2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93194C0B446AC3C1C60E52F /* Pods-positionmaker2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-positionmaker2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-positionmaker2/Pods-positionmaker2.debug.xcconfig"; sourceTree = "<group>"; };
 		EBB6028E4389CEE336406C3D /* Pods_positionmaker2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_positionmaker2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5272A831B33FE660021B01B /* ActionLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionLogController.swift; sourceTree = "<group>"; };
+		F5272A831B33FE660021B01B /* ActionLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionLogController.swift; path = positionmaker2/ActionLogController.swift; sourceTree = "<group>"; };
 		F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = positionmaker2.entitlements; sourceTree = "<group>"; };
 		F57870391B282CEF00FC66D6 /* positionmaker2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = positionmaker2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F578703D1B282CEF00FC66D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F578703E1B282CEF00FC66D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F57870411B282CEF00FC66D6 /* positionmaker2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = positionmaker2.xcdatamodel; sourceTree = "<group>"; };
-		F57870431B282CEF00FC66D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F57870431B282CEF00FC66D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = positionmaker2/ViewController.swift; sourceTree = "<group>"; };
 		F57870461B282CEF00FC66D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F57870481B282CEF00FC66D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F578704B1B282CEF00FC66D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -69,11 +69,11 @@
 		F5B566A71B39523F00DBB978 /* DashDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashDrawingView.swift; sourceTree = "<group>"; };
 		F5B566A91B39556B00DBB978 /* ParentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
 		F5C84EC91B44F38C0051C98B /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
-		F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayController.swift; sourceTree = "<group>"; };
-		F5D09F7C1D4B20A80088286D /* PositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionController.swift; sourceTree = "<group>"; };
+		F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordPlayController.swift; path = positionmaker2/RecordPlayController.swift; sourceTree = "<group>"; };
+		F5D09F7C1D4B20A80088286D /* PositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PositionController.swift; path = positionmaker2/PositionController.swift; sourceTree = "<group>"; };
 		F5D09F7E1D4BB4830088286D /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		F5D09F821D4F26E90088286D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		F5D09F841D4F2BFD0088286D /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		F5D09F841D4F2BFD0088286D /* MultipeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipeerController.swift; path = positionmaker2/MultipeerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,25 +142,17 @@
 		F578703B1B282CEF00FC66D6 /* positionmaker2 */ = {
 			isa = PBXGroup;
 			children = (
-				F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */,
+				F5C3B3CA1F61821D00760D34 /* Util */,
+				F5C3B3C91F6181BE00760D34 /* Controller */,
+				F5C3B3CB1F61823A00760D34 /* View */,
 				F578703E1B282CEF00FC66D6 /* AppDelegate.swift */,
-				F5272A831B33FE660021B01B /* ActionLogController.swift */,
-				F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */,
-				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
-				F57870431B282CEF00FC66D6 /* ViewController.swift */,
-				F5D09F7C1D4B20A80088286D /* PositionController.swift */,
-				F5B566A71B39523F00DBB978 /* DashDrawingView.swift */,
-				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
-				F5B566A91B39556B00DBB978 /* ParentView.swift */,
-				F57870681B295CD000FC66D6 /* FigureView.swift */,
 				F57870641B283BB900FC66D6 /* Figure.swift */,
 				F5C84EC91B44F38C0051C98B /* SphereMenu.swift */,
-				F5D09F841D4F2BFD0088286D /* MultipeerController.swift */,
-				F5D09F7E1D4BB4830088286D /* Util.swift */,
 				F57870451B282CEF00FC66D6 /* Main.storyboard */,
-				F57870481B282CEF00FC66D6 /* Images.xcassets */,
 				F578704A1B282CEF00FC66D6 /* LaunchScreen.xib */,
+				F57870481B282CEF00FC66D6 /* Images.xcassets */,
 				F57870401B282CEF00FC66D6 /* positionmaker2.xcdatamodeld */,
+				F5290BAA1B2FAB86000F8FE9 /* positionmaker2.entitlements */,
 				F578703C1B282CEF00FC66D6 /* Supporting Files */,
 			);
 			path = positionmaker2;
@@ -189,6 +181,39 @@
 				F57870561B282CEF00FC66D6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F5C3B3C91F6181BE00760D34 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F5272A831B33FE660021B01B /* ActionLogController.swift */,
+				F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */,
+				F57870431B282CEF00FC66D6 /* ViewController.swift */,
+				F5D09F7C1D4B20A80088286D /* PositionController.swift */,
+				F5D09F841D4F2BFD0088286D /* MultipeerController.swift */,
+			);
+			name = Controller;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		F5C3B3CA1F61821D00760D34 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
+				F5D09F7E1D4BB4830088286D /* Util.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		F5C3B3CB1F61823A00760D34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F5B566A71B39523F00DBB978 /* DashDrawingView.swift */,
+				F578706A1B2AC37700FC66D6 /* MyScrollView.swift */,
+				F5B566A91B39556B00DBB978 /* ParentView.swift */,
+				F57870681B295CD000FC66D6 /* FigureView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

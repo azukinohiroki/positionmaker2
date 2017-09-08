@@ -30,6 +30,7 @@ class RecordPlayController {
 
   private var _recording = false
   private var _record: [RecordPlayObject] = []
+  private var _moved: [FigureView] = []
   
   
   func startRecording(_ figureViews: [FigureView]) {
@@ -43,11 +44,20 @@ class RecordPlayController {
     
     let obj = RecordPlayObject(figureViews: figureViews)
     _record.append(obj)
+    _moved.removeAll()
   }
   
   
   func clearRecord() {
     _record = []
+  }
+  
+  
+  func figureMoved(figureView fv: FigureView) {
+    if let index = _moved.index(of: fv) {
+      _moved.remove(at: index)
+    }
+    _moved.append(fv)
   }
   
   
