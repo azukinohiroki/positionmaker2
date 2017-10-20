@@ -135,10 +135,19 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   }
   
   
+  func toDictionary() -> Dictionary<String, Any> {
+    var dic = Dictionary<String, Any>()
+    dic["id"] = _figure.id
+    dic["name"] = _figure.name
+    dic["color"] = _figure.color
+    return dic
+  }
+  
+  
   
   // MARK: UI event delegate
   
-  func handleTap(sender: UITapGestureRecognizer) {
+  @objc func handleTap(sender: UITapGestureRecognizer) {
     if sender.state == .ended && !_moved {
       selected = !selected
 //      println("tapped+\(selected)")
@@ -148,7 +157,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   private var _longPressed = false
   
-  func handleLongPress(sender: UILongPressGestureRecognizer) {
+  @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
     if sender.state == .began {
       if _moved { return; }
       _longPressed = true
@@ -200,7 +209,7 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   private var _lastLabel = ""
   
-  func handleDoubleTap(sender: UITapGestureRecognizer) {
+  @objc func handleDoubleTap(sender: UITapGestureRecognizer) {
     selected = false
     _label.isUserInteractionEnabled = true
     if _label.canBecomeFirstResponder {

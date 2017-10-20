@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let actionLogController  = ActionLogController()
   let recordPlayController = RecordPlayController()
   let positionController   = PositionController()
+  let saveLoadController   = SaveLoadController()
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {

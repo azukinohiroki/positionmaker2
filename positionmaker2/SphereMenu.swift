@@ -86,7 +86,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     self.commonSetup()
   }
   
-  func hide(){
+  @objc func hide(){
     if (self.expanded!) {
       self.shrinkSubmenu()
     }
@@ -150,7 +150,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     return position;
   }
   
-  func startTapped(gesture:UITapGestureRecognizer){
+  @objc func startTapped(gesture:UITapGestureRecognizer){
     self.animator?.removeBehavior(self.collision!)
     self.animator?.removeBehavior(self.itemBehavior!)
     self.removeSnapBehaviors()
@@ -162,7 +162,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     }
   }
   
-  func tapped(gesture:UITapGestureRecognizer)
+  @objc func tapped(gesture:UITapGestureRecognizer)
   {
     var tag = gesture.view?.tag
     tag? -= Int(kItemInitTag)
@@ -170,7 +170,7 @@ class SphereMenu:UIView, UICollisionBehaviorDelegate{
     self.shrinkSubmenu()
   }
   
-  func panned(gesture:UIPanGestureRecognizer)
+  @objc func panned(gesture:UIPanGestureRecognizer)
   {
     let touchedView = gesture.view;
     if (gesture.state == UIGestureRecognizerState.began) {

@@ -113,6 +113,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     addFigureView(figure: Figure.defaultFigure(), frame: rect)
   }
   
+  @IBAction func saveTapped(_ sender: Any) {
+    SaveLoadController.instance().startSave(figureViews: self.figureViews)
+  }
+  
   
 //  override func shouldAutorotate() -> Bool {
 //    return true

@@ -23,6 +23,8 @@
 		F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578706A1B2AC37700FC66D6 /* MyScrollView.swift */; };
 		F5B566A81B39523F00DBB978 /* DashDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B566A71B39523F00DBB978 /* DashDrawingView.swift */; };
 		F5B566AA1B39556B00DBB978 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B566A91B39556B00DBB978 /* ParentView.swift */; };
+		F5C3B3CD1F624AB300760D34 /* SaveLoadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C3B3CC1F624AB300760D34 /* SaveLoadHelper.swift */; };
+		F5C3B3D01F62502E00760D34 /* SaveLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C3B3CF1F62502E00760D34 /* SaveLoadController.swift */; };
 		F5C84ECA1B44F38C0051C98B /* SphereMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84EC91B44F38C0051C98B /* SphereMenu.swift */; };
 		F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */; };
 		F5D09F7D1D4B20A80088286D /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D09F7C1D4B20A80088286D /* PositionController.swift */; };
@@ -68,6 +70,8 @@
 		F578706A1B2AC37700FC66D6 /* MyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
 		F5B566A71B39523F00DBB978 /* DashDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashDrawingView.swift; sourceTree = "<group>"; };
 		F5B566A91B39556B00DBB978 /* ParentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		F5C3B3CC1F624AB300760D34 /* SaveLoadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLoadHelper.swift; sourceTree = "<group>"; };
+		F5C3B3CF1F62502E00760D34 /* SaveLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveLoadController.swift; sourceTree = "<group>"; };
 		F5C84EC91B44F38C0051C98B /* SphereMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphereMenu.swift; sourceTree = "<group>"; };
 		F5C84ECB1B44F87C0051C98B /* RecordPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordPlayController.swift; path = positionmaker2/RecordPlayController.swift; sourceTree = "<group>"; };
 		F5D09F7C1D4B20A80088286D /* PositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PositionController.swift; path = positionmaker2/PositionController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 				F57870431B282CEF00FC66D6 /* ViewController.swift */,
 				F5D09F7C1D4B20A80088286D /* PositionController.swift */,
 				F5D09F841D4F2BFD0088286D /* MultipeerController.swift */,
+				F5C3B3CF1F62502E00760D34 /* SaveLoadController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -200,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				F57870661B2945EC00FC66D6 /* CoreDataHelper.swift */,
+				F5C3B3CC1F624AB300760D34 /* SaveLoadHelper.swift */,
 				F5D09F7E1D4BB4830088286D /* Util.swift */,
 			);
 			name = Util;
@@ -274,7 +280,7 @@
 					F57870381B282CEF00FC66D6 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = RU67C28W6J;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -283,7 +289,7 @@
 					};
 					F57870501B282CEF00FC66D6 = {
 						CreatedOnToolsVersion = 6.3.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						TestTargetID = F57870381B282CEF00FC66D6;
 					};
 				};
@@ -364,13 +370,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-positionmaker2-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		454A8CE1962AAC40D4D9064B /* [CP] Embed Pods Frameworks */ = {
@@ -379,9 +388,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-positionmaker2/Pods-positionmaker2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftHSVColorPicker/SwiftHSVColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Sync/Sync.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftHSVColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sync.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -409,13 +429,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-positionmaker2Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -439,6 +462,8 @@
 				F57870651B283BB900FC66D6 /* Figure.swift in Sources */,
 				F5D09F7F1D4BB4830088286D /* Util.swift in Sources */,
 				F5C84ECC1B44F87C0051C98B /* RecordPlayController.swift in Sources */,
+				F5C3B3CD1F624AB300760D34 /* SaveLoadHelper.swift in Sources */,
+				F5C3B3D01F62502E00760D34 /* SaveLoadController.swift in Sources */,
 				F578706B1B2AC37700FC66D6 /* MyScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,7 +612,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.azk.hr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -606,7 +632,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.azk.hr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -627,7 +654,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.azk.hr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/positionmaker2.app/positionmaker2";
 			};
 			name = Debug;
@@ -645,7 +673,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.azk.hr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/positionmaker2.app/positionmaker2";
 			};
 			name = Release;
