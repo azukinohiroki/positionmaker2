@@ -15,6 +15,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   @IBOutlet var baseView: ParentView!
   @IBOutlet var debugLabel: UILabel!
   @IBOutlet var dashDrawingView: DashDrawingView!
+  @IBOutlet weak var linesCtrlContainer: UIStackView!
   
   private (set) var figureViews = [FigureView]()
   private (set) var playInterval = 3
@@ -30,18 +31,18 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     
     dashDrawingView.isUserInteractionEnabled = false
     
-    let recordPlayController = RecordPlayController.instance()
-    
-    let figure = Figure.defaultFigure()
-
-    for j in 0..<10 {
-      for i in 0..<15 {
-        let frame   = CGRect(x: CGFloat(i * 50), y: CGFloat(j*50 + 100), width: 30.0, height: 30.0)
-        addFigureView(figure: figure, frame: frame)
-      }
-    }
-    
-    recordPlayController.startRecording(figureViews)
+//    let recordPlayController = RecordPlayController.instance()
+//    
+//    let figure = Figure.defaultFigure()
+//
+//    for j in 0..<10 {
+//      for i in 0..<15 {
+//        let frame   = CGRect(x: CGFloat(i * 50), y: CGFloat(j*50 + 100), width: 30.0, height: 30.0)
+//        addFigureView(figure: figure, frame: frame)
+//      }
+//    }
+//
+//    recordPlayController.startRecording(figureViews)
   }
 
   override func didReceiveMemoryWarning() {
@@ -83,6 +84,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   }
   
   private var pickerView: UIPickerView!
+  
+  func linesTapped(_ sender: UIButton) {
+    self.linesCtrlContainer.isHidden = false
+  }
   
   /*@IBAction func linesTapped(_ sender: UIButton) {
     let size:CGFloat = 200

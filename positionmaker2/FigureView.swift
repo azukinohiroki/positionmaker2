@@ -246,13 +246,13 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     //    super.touchesMoved(touches, withEvent: event)
     
-    _moved = true
-    
     if let parent = _parent {
       let touch = touches.first as UITouch!
       let point = (touch?.location(in: parent))!
       let dx = _lastTouched.x - point.x
       let dy = _lastTouched.y - point.y
+      
+      _moved = !(dx <= 0 && dy <= 0)
       
       let center  = self.center
       self.center = CGPoint(x: center.x - dx, y: center.y - dy)
@@ -384,11 +384,11 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
-    textField.isUserInteractionEnabled = false
     return false
   }
   
   func textFieldDidEndEditing(_ textField: UITextField) {
+    textField.isUserInteractionEnabled = false
     fitFontSize(textField)
     ActionLogController.instance().addLabelChange(from: _lastLabel, to: textField.text!, fv: self)
   }
