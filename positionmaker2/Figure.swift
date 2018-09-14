@@ -24,6 +24,7 @@ class Figure: Object {
   static let Red:   NSNumber = 0xFF0000
   static let Green: NSNumber = 0x00FF00
   static let Blue:  NSNumber = 0x0000FF
+  static let Cyan:  NSNumber = 0x00FFFF
 
   static func defaultFigure() -> Figure {
     
@@ -36,7 +37,7 @@ class Figure: Object {
 //    let realm = try! Realm()
     
     let f = Figure()
-    f.color = Blue
+    f.color = Cyan
     f.name  = ""
 //    f.id = NSNumber(value: (realm.objects(Figure.self).sorted(byKeyPath: "id", ascending: false).first?.id ?? 0).intValue + 1)
     

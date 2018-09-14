@@ -21,4 +21,9 @@ class Util {
     }
     return fvs
   }
+  
+  
+  static func documentDirectoryPath() -> String {
+    return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+  }
 }

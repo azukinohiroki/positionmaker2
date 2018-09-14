@@ -21,6 +21,9 @@ class ActionLogObject {
   init(type: ActionLogType) {
     self.type = type
   }
+  func toDictionary() -> Dictionary<String, Any> {
+    return Dictionary<String, Any>()
+  }
 }
 
 class MoveObject : ActionLogObject {
@@ -33,6 +36,9 @@ class MoveObject : ActionLogObject {
     self.fv   = fv
     super.init(type: .MOVE)
   }
+  override func toDictionary() -> Dictionary<String, Any> {
+    return ["type": ActionLogType.MOVE, "from": from, "to": to, "fv_id": fv.getId()]
+  }
 }
 
 class MultiMoveObject : MoveObject {
@@ -41,6 +47,13 @@ class MultiMoveObject : MoveObject {
     self.fvs  = fvs
     super.init(from: from, to: to, fv: fv)
     self.type = .MULTI_MOVE
+  }
+  override func toDictionary() -> Dictionary<String, Any> {
+    var arr = Array<NSNumber>()
+    for fv in fvs {
+      arr.append(fv.getId())
+    }
+    return ["type": ActionLogType.MULTI_MOVE, "from": from, "to": to, "fv_id": fv.getId(), "fv_ids": arr]
   }
 }
 
@@ -51,6 +64,9 @@ class DeleteObject : ActionLogObject {
     self.fv = fv
     self.vc = vc
     super.init(type: .DELETE)
+  }
+  override func toDictionary() -> Dictionary<String, Any> {
+    return ["type": ActionLogType.DELETE, "fv_id": fv.getId()]
   }
 }
 
@@ -63,6 +79,9 @@ class LabelChangeObject : ActionLogObject {
     self.to   = to
     self.fv   = fv
     super.init(type: .LABEL_CHANGE)
+  }
+  override func toDictionary() -> Dictionary<String, Any> {
+    return ["type": ActionLogType.LABEL_CHANGE, "from": from, "to": to, "fv_id": fv.getId()]
   }
 }
 
@@ -196,5 +215,21 @@ class ActionLogController {
     }
     
     return log
+  }
+  
+  
+  func toDictionary() -> Dictionary<String, Array<Dictionary<String, Any>>> {
+    
+    var undoArray = Array<Dictionary<String, Any>>()
+    for undo in _undoLog {
+      undoArray.append((undo as! ActionLogObject).toDictionary())
+    }
+    
+    var redoArray = Array<Dictionary<String, Any>>()
+    for redo in _redoLog {
+      redoArray.append((redo as! ActionLogObject).toDictionary())
+    }
+    
+    return ["undo": undoArray, "redo": redoArray]
   }
 }

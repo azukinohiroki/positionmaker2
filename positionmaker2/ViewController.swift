@@ -65,6 +65,13 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
     figureViews.append(fv)
   }
   
+  public func addFigureView(figureView: FigureView) {
+    
+    figureView.delegate = self
+    baseView.addSubview(figureView)
+    figureViews.append(figureView)
+  }
+  
   @IBAction func recTapped(_ sender: UIButton) {
 
     RecordPlayController.instance().recordLocation(figureViews)
@@ -115,11 +122,17 @@ class ViewController: UIViewController, UIScrollViewDelegate, FigureViewDelegate
   
   @IBAction func addTapped(_ sender: UIButton) {
     let rect = CGRect(x: self.view.frame.size.width/2-15, y: self.view.frame.size.height/2-15, width: 30, height: 30)
-    addFigureView(figure: Figure.defaultFigure(), frame: rect)
+    let f    = Figure.defaultFigure()
+    f.id     = NSNumber(value: figureViews.count + 1)
+    addFigureView(figure: f, frame: rect)
   }
   
   @IBAction func saveTapped(_ sender: Any) {
-    SaveLoadController.instance().startSave(figureViews: self.figureViews)
+    SaveLoadController.instance().startSave(self.figureViews)
+  }
+  
+  @IBAction func loadTapped(_ sender: Any) {
+    SaveLoadController.instance().startLoad(self)
   }
   
   

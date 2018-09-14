@@ -237,7 +237,6 @@
 				F57870361B282CEF00FC66D6 /* Frameworks */,
 				F57870371B282CEF00FC66D6 /* Resources */,
 				454A8CE1962AAC40D4D9064B /* [CP] Embed Pods Frameworks */,
-				2A86D5ADBF40F6A9C9085DC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,8 +255,6 @@
 				F578704D1B282CEF00FC66D6 /* Sources */,
 				F578704E1B282CEF00FC66D6 /* Frameworks */,
 				F578704F1B282CEF00FC66D6 /* Resources */,
-				0C7EE74E8EFA1B96D4EFC7E7 /* [CP] Embed Pods Frameworks */,
-				B4727D63CEDAC7F9A857BBFE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -337,36 +334,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C7EE74E8EFA1B96D4EFC7E7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-positionmaker2Tests/Pods-positionmaker2Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2A86D5ADBF40F6A9C9085DC1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-positionmaker2/Pods-positionmaker2-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		37DC6154222A00AB655748EB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,21 +376,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-positionmaker2/Pods-positionmaker2-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4727D63CEDAC7F9A857BBFE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-positionmaker2Tests/Pods-positionmaker2Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F859FE0370D90BAD188FF71A /* [CP] Check Pods Manifest.lock */ = {

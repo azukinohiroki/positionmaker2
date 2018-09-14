@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,28 +19,31 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.01" maximumZoomScale="100" translatesAutoresizingMaskIntoConstraints="NO" id="SUk-qE-P5p" customClass="MyScrollView" customModule="positionmaker2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="376" height="100"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.01" maximumZoomScale="100" translatesAutoresizingMaskIntoConstraints="NO" id="SUk-qE-P5p" customClass="MyScrollView" customModule="positionmaker2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKX-H1-WB1" customClass="ParentView" customModule="positionmaker2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1024" id="C5y-6c-PcT"/>
+                                            <constraint firstAttribute="width" constant="768" id="t77-wH-BkW"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hKX-H1-WB1" secondAttribute="bottom" id="F16-sa-bZc"/>
-                                    <constraint firstItem="hKX-H1-WB1" firstAttribute="leading" secondItem="SUk-qE-P5p" secondAttribute="leading" id="KLC-aC-Zw1"/>
-                                    <constraint firstAttribute="trailing" secondItem="hKX-H1-WB1" secondAttribute="trailing" id="Mdt-Po-ML0"/>
-                                    <constraint firstItem="hKX-H1-WB1" firstAttribute="top" secondItem="SUk-qE-P5p" secondAttribute="top" id="iqu-5F-4HD"/>
+                                    <constraint firstItem="hKX-H1-WB1" firstAttribute="leading" secondItem="SUk-qE-P5p" secondAttribute="leading" id="Amq-cS-r6L"/>
+                                    <constraint firstAttribute="trailing" secondItem="hKX-H1-WB1" secondAttribute="trailing" id="EEv-Id-ygL"/>
+                                    <constraint firstAttribute="bottom" secondItem="hKX-H1-WB1" secondAttribute="bottom" id="a2L-sn-mAz"/>
+                                    <constraint firstItem="hKX-H1-WB1" firstAttribute="top" secondItem="SUk-qE-P5p" secondAttribute="top" id="b7g-cR-g1j"/>
                                 </constraints>
                             </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B93-a2-YAK" customClass="DashDrawingView" customModule="positionmaker2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="198"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B93-a2-YAK" customClass="DashDrawingView" customModule="positionmaker2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -48,7 +51,7 @@
                                 </accessibility>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HTn-Wm-scA" userLabel="icon_container">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="974" width="768" height="50"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UeF-sb-EL8">
                                         <rect key="frame" x="0.0" y="0.0" width="664" height="50"/>
@@ -85,22 +88,22 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lfV-sM-nGP">
-                                <rect key="frame" x="16" y="585" width="343" height="29"/>
+                                <rect key="frame" x="20" y="942" width="728" height="29"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_view_headline" translatesAutoresizingMaskIntoConstraints="NO" id="fbX-hX-COQ">
-                                        <rect key="frame" x="0.0" y="2.5" width="31" height="24"/>
+                                        <rect key="frame" x="0.0" y="2.5" width="65.5" height="24"/>
                                     </imageView>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="wvn-TP-DEw" userLabel="Horizontal">
-                                        <rect key="frame" x="41" y="0.0" width="94" height="29"/>
+                                        <rect key="frame" x="75.5" y="0.0" width="94" height="29"/>
                                         <connections>
                                             <action selector="horizontalLineNumChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="jfB-pw-g9l"/>
                                         </connections>
                                     </stepper>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_view_column" translatesAutoresizingMaskIntoConstraints="NO" id="mjL-Sz-aF8">
-                                        <rect key="frame" x="172" y="2.5" width="31" height="24"/>
+                                        <rect key="frame" x="343" y="2.5" width="65.5" height="24"/>
                                     </imageView>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="8m4-Mx-tA3" userLabel="Vertical">
-                                        <rect key="frame" x="213" y="0.0" width="94" height="29"/>
+                                        <rect key="frame" x="418.5" y="0.0" width="94" height="29"/>
                                         <connections>
                                             <action selector="verticalLineNumChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8ZP-jL-a4G"/>
                                         </connections>
@@ -113,20 +116,21 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97118144129999995" green="0.95667799080000004" blue="0.33944452629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="SUk-qE-P5p" secondAttribute="trailing" constant="-16" id="3BU-eK-e6h"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="61u-Hz-vaP"/>
                             <constraint firstAttribute="bottom" secondItem="HTn-Wm-scA" secondAttribute="bottom" id="7tT-gu-Zc4"/>
                             <constraint firstItem="HTn-Wm-scA" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="A8B-66-GVO"/>
-                            <constraint firstItem="SUk-qE-P5p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BJ3-Zq-qWd"/>
+                            <constraint firstItem="SUk-qE-P5p" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="BXe-35-iMI"/>
                             <constraint firstAttribute="trailing" secondItem="HTn-Wm-scA" secondAttribute="trailing" id="DEo-iR-UZ6"/>
-                            <constraint firstAttribute="width" secondItem="hKX-H1-WB1" secondAttribute="width" id="MGr-fp-Vc5"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="DdX-yT-gof"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="F7N-Ls-KXw"/>
                             <constraint firstItem="HTn-Wm-scA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="OSx-Du-alV"/>
+                            <constraint firstItem="SUk-qE-P5p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PXF-1y-esV"/>
                             <constraint firstItem="HTn-Wm-scA" firstAttribute="top" secondItem="lfV-sM-nGP" secondAttribute="bottom" constant="3" id="QQU-SO-39P"/>
-                            <constraint firstItem="SUk-qE-P5p" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="c8V-Q3-ut7"/>
-                            <constraint firstAttribute="height" secondItem="hKX-H1-WB1" secondAttribute="height" id="gCb-AL-y4w"/>
-                            <constraint firstItem="SUk-qE-P5p" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gqB-Kh-enY"/>
+                            <constraint firstItem="SUk-qE-P5p" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cFU-4N-nR8"/>
+                            <constraint firstItem="SUk-qE-P5p" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="fHm-Sk-vM0"/>
+                            <constraint firstItem="B93-a2-YAK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jOf-zg-mSp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lfV-sM-nGP" secondAttribute="trailing" id="lYZ-8E-f9V"/>
                             <constraint firstItem="lfV-sM-nGP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tcT-oJ-kgb"/>
-                            <constraint firstAttribute="height" secondItem="SUk-qE-P5p" secondAttribute="height" id="xvO-x8-x5P"/>
                         </constraints>
                     </view>
                     <connections>
@@ -154,52 +158,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OGp-gG-RF0">
-                                <rect key="frame" x="60" y="0.0" width="544" height="50"/>
+                                <rect key="frame" x="60" y="20" width="544" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gw-Iy-C6i" userLabel="ic_grid_on">
-                                        <rect key="frame" x="0.0" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="0.0" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_grid_on"/>
                                         <connections>
                                             <action selector="linesTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="ZQk-MN-55u"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfo-w7-ZEi" userLabel="ic_undo">
-                                        <rect key="frame" x="86.5" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="86.5" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_undo"/>
                                         <connections>
                                             <action selector="undoTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="3fD-qI-cWO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju8-fU-NCd" userLabel="ic_redo">
-                                        <rect key="frame" x="173.5" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="173.5" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_redo"/>
                                         <connections>
                                             <action selector="redoTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="50K-6v-MVP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fC6-2n-16J" userLabel="ic_add">
-                                        <rect key="frame" x="260" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="260" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_add"/>
                                         <connections>
                                             <action selector="addTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="Gy3-jE-Crg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjI-D9-FWT" userLabel="ic_save">
-                                        <rect key="frame" x="346.5" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="346.5" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_save"/>
                                         <connections>
                                             <action selector="saveTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="DNh-8b-m8T"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pK-MA-hj6" userLabel="ic_play_arrow">
-                                        <rect key="frame" x="433.5" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="433.5" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_play_arrow"/>
                                         <connections>
                                             <action selector="playTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="Wur-3e-HSr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dj-mn-xI8" userLabel="ic_fiber_manual_record">
-                                        <rect key="frame" x="520" y="13" width="24" height="24"/>
+                                        <rect key="frame" x="520" y="3" width="24" height="24"/>
                                         <state key="normal" image="ic_fiber_manual_record"/>
                                         <connections>
                                             <action selector="recTapped:" destination="WTc-3k-tLC" eventType="touchUpInside" id="KPV-CQ-n8U"/>

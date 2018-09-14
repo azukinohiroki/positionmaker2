@@ -107,13 +107,11 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
     self.backgroundColor = UIColor.clear
   }
   
-  
   private func setFigure(_ figure: Figure) {
     
     _figure = figure
     setColor(figure)
   }
-  
   
   private func setColor(_ figure: Figure) {
     let color = figure.color.intValue
@@ -136,11 +134,31 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   
   
   func toDictionary() -> Dictionary<String, Any> {
-    var dic = Dictionary<String, Any>()
-    dic["id"] = _figure.id
-    dic["name"] = _figure.name
-    dic["color"] = _figure.color
-    return dic
+    var f = Dictionary<String, Any>()
+    f["id"] = _figure.id
+    f["name"] = _figure.name
+    f["color"] = _figure.color
+    return ["figure":f, "x":self.frame.origin.x, "y":self.frame.origin.y, "h":self.frame.size.height, "w":self.frame.size.width,
+            "a":_a, "selected":selected]
+  }
+  
+  func getId() -> NSNumber {
+    return _figure.id
+  }
+  
+  static func fromDictionary(_ dic: Dictionary<String, Any>, _ vc: ViewController) -> FigureView {
+    let tmp = dic["figure"] as! Dictionary<String, Any>
+    let f   = Figure.defaultFigure()
+    f.id    = tmp["id"]    as! NSNumber
+    f.name  = tmp["name"]  as! String
+    f.color = tmp["color"] as! NSNumber
+    
+    let frame = CGRect(x: dic["x"] as! CGFloat, y: dic["y"] as! CGFloat, width: dic["w"] as! CGFloat, height: dic["h"] as! CGFloat)
+    let fv    = FigureView(figure: f, vc: vc, frame: frame)
+    fv._a = dic["a"] as! CGFloat
+    fv.selected = dic["selected"] as! Bool
+    
+    return fv
   }
   
   
@@ -230,35 +248,35 @@ class FigureView: UIView, UITextFieldDelegate, SphereMenuDelegate {
   private var _moved: Bool = false
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //    super.touchesBegan(touches, withEvent: event)
     
     _moved = false
     
     if let del = delegate {
-      let touch = touches.first as UITouch!
-      _parent = del.startTouch(self, touch: touch!)
-      _lastTouched = (touch?.location(in: _parent))!
-      _beganPoint  = frame.origin
+      if let touch = touches.first as UITouch? {
+        _parent = del.startTouch(self, touch: touch)
+        _lastTouched = touch.location(in: _parent)
+        _beganPoint  = frame.origin
+      }
     }
   }
   
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //    super.touchesMoved(touches, withEvent: event)
     
     if let parent = _parent {
-      let touch = touches.first as UITouch!
-      let point = (touch?.location(in: parent))!
-      let dx = _lastTouched.x - point.x
-      let dy = _lastTouched.y - point.y
-      
-      _moved = !(dx <= 0 && dy <= 0)
-      
-      let center  = self.center
-      self.center = CGPoint(x: center.x - dx, y: center.y - dy)
-      moveOthers(dx, dy)
-      
-      _lastTouched = point
+      if let touch = touches.first as UITouch? {
+        let point  = touch.location(in: parent)
+        let dx = _lastTouched.x - point.x
+        let dy = _lastTouched.y - point.y
+        
+        _moved = !(dx <= 0 && dy <= 0)
+        
+        let center  = self.center
+        self.center = CGPoint(x: center.x - dx, y: center.y - dy)
+        moveOthers(dx, dy)
+        
+        _lastTouched = point
+      }
     }
   }
   

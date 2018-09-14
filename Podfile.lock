@@ -1,12 +1,12 @@
 PODS:
-  - Realm (3.0.0):
-    - Realm/Headers (= 3.0.0)
-  - Realm/Headers (3.0.0)
-  - RealmSwift (3.0.0):
-    - Realm (= 3.0.0)
-  - SCLAlertView (0.7.0)
+  - Realm (3.9.0):
+    - Realm/Headers (= 3.9.0)
+  - Realm/Headers (3.9.0)
+  - RealmSwift (3.9.0):
+    - Realm (= 3.9.0)
+  - SCLAlertView (0.8)
   - SwiftHSVColorPicker (1.1.1)
-  - Sync (4.0.1)
+  - Sync (5.0.0)
 
 DEPENDENCIES:
   - RealmSwift
@@ -14,13 +14,21 @@ DEPENDENCIES:
   - SwiftHSVColorPicker
   - Sync
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
+    - SCLAlertView
+    - SwiftHSVColorPicker
+    - Sync
+
 SPEC CHECKSUMS:
-  Realm: dec0de73be8c57506e39db72694d513c189493b3
-  RealmSwift: 44a7090b16d1b22a406c6bf129bdd602db1bbecc
-  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  Realm: 3d36f208bf3aff8335dc3298742140182bde4edb
+  RealmSwift: aa4d11917bfcfaa3ed51f219102a487ecd895447
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SwiftHSVColorPicker: 69c9028dea168e0f8ee2439d31a899cf1df95678
-  Sync: edf38c4c95d4f02a47b78e759457279345a21804
+  Sync: c74a51b04f67eef7b4999322baebbaa16267d569
 
 PODFILE CHECKSUM: 27c7a4f55855d715d1a2382acc35d1e5c28ba44a
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

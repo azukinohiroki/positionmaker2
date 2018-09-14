@@ -19,6 +19,13 @@ class RecordPlayObject {
       ps.append(fv.center)
     }
   }
+  func toDictionary() -> Dictionary<String, Any> {
+    var fv_ids = Array<NSNumber>()
+    for fv in fvs {
+      fv_ids.append(fv.getId())
+    }
+    return ["fv_ids": fv_ids, "ps": ps]
+  }
 }
 
 class RecordPlayController {
@@ -50,6 +57,15 @@ class RecordPlayController {
   
   func clearRecord() {
     _record = []
+  }
+  
+  
+  func toDictionary() -> Dictionary<String, Any> {
+    var arr = Array<Dictionary<String, Any>>()
+    for rec in _record {
+      arr.append(rec.toDictionary())
+    }
+    return ["recordPlay": arr]
   }
   
   

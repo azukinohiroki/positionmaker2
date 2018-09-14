@@ -29,21 +29,22 @@ class ParentView : UIView {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    super.touchesBegan(touches, withEvent: event)
     
-    let touch = touches.first as UITouch!
-    let p = touch!.location(in: dashDrawingView)
-    
-    _dTapped = false
-    
-    if let lastTouch = _lastTouch {
-      let diff = touch!.timestamp - lastTouch.timestamp
-      _dTapped = diff < 0.5
-      if _dTapped {
-        _dTapStartP = p
-        delegate?.drawRectStarted()
+    if let touch = touches.first as UITouch? {
+      let p = touch.location(in: dashDrawingView)
+      
+      _dTapped = false
+      
+      if let lastTouch = _lastTouch {
+        let diff = touch.timestamp - lastTouch.timestamp
+        _dTapped = diff < 0.5
+        if _dTapped {
+          _dTapStartP = p
+          delegate?.drawRectStarted()
+        }
       }
+      
+      _lastTouch = touch
     }
-    
-    _lastTouch = touch
   }
   
   
